@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.motc.gov.tw/RoadEvent" xmlns:roevt="http://www.motc.gov.tw/RoadEvent" version="1.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:net="http://www.motc.gov.tw/TransportNetwork">
+	<xs:include schemaLocation="motcRoadEventEnums.xsd"/>
+	<xs:import namespace="http://www.motc.gov.tw/TransportNetwork" schemaLocation="motcTransportNetwork.xsd"/>
+	<xs:import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<xs:annotation>
+		<xs:appinfo>
+			<gml:gmlProfileSchema>http://schemas.opengis.net/gml/3.2.1/gml.xsd</gml:gmlProfileSchema>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="RoadEvent" type="roevt:RoadEventType" substitutionGroup="net:Event">
+		<xs:annotation>
+			<xs:documentation>道路事件之基本屬性及空間參照方式</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="RoadEventType">
+		<xs:complexContent>
+			<xs:extension base="net:EventType">
+				<xs:sequence>
+					<xs:element name="impact" type="roevt:EventImpactValueType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>事件衝擊程度</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="status" type="roevt:EventStatusValueType">
+						<xs:annotation>
+							<xs:documentation>事件狀態</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="sourceUnit" type="roevt:EventUnitValueType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>訊息來源單位</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="source" type="roevt:EventProviderValueType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>訊息來源</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="region" type="roevt:EventUnitValueType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>事件分區(行政區)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="range" type="roevt:BlockedLengthValueType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>影響範圍</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="period" type="roevt:EventPeriodValueType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>事件週期性</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="eventType" type="roevt:EventTypeValueType">
+						<xs:annotation>
+							<xs:documentation>該路況事件之主類別</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="blockedLane" type="roevt:BlockedLaneTypeValueType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>該筆路況事件所造成之車道阻斷數</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="RoadEventPropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="roevt:RoadEvent"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<xs:attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</xs:complexType>
+</xs:schema>

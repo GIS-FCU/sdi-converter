@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include/>
+	<xs:include/>
+	<xs:element name="Angle" type="Angle"/>
+	<xs:complexType name="Angle">
+		<xs:annotation>
+			<xs:documentation>The amount of rotation needed to bring one line or plane into coincidence with another, generally measured in radians or degrees.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Measure">
+				<xs:sequence>
+					<xs:element name="uom" type="UomAngle" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="AngularVelocity" type="AngularVelocity"/>
+	<xs:complexType name="AngularVelocity">
+		<xs:complexContent>
+			<xs:extension base="Measure">
+				<xs:sequence>
+					<xs:element name="time" type="UomTime" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>the units of time used to measure this velocity</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="angle" type="UomAngle" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The unit of distance or length used to measure the velocity.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="uom" type="UomVelocity" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Units used to measure this velocity, usually denoted as distance/time</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="Area" type="Area"/>
+	<xs:complexType name="Area">
+		<xs:annotation>
+			<xs:documentation>The measure of the physical extent of any topologically 2-D geometric object. Usually measured in "square" units of length.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Measure">
+				<xs:sequence>
+					<xs:element name="uom" type="UomArea" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Units used for measuring area in this measure.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="Currency" type="Currency"/>
+	<xs:complexType name="Currency">
+		<xs:complexContent>
+			<xs:extension base="Measure">
+				<xs:sequence>
+					<xs:element name="uom" type="UomCurrency" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="Distance" type="Distance"/>
+	<xs:complexType name="Distance">
+		<xs:annotation>
+			<xs:documentation>Used as a type for returning distances and possibly lengths. Care must be taken when using distance where length is meant. The distance from start to end of a curve is not the length of the curve, but represents the length of the shortest curve between these two points. Since Distance is a length of some curve (albeit a hypothetical one), the unit of measure is the same.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Length">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="Length" type="Length"/>
+	<xs:complexType name="Length">
+		<xs:annotation>
+			<xs:documentation>The measure of distance as an integral, i.e. the limit of an infinite sum of distances between points on a curve.  For example the length of curve, the perimeter of a polygon as the length of the boundary.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Measure">
+				<xs:sequence>
+					<xs:element name="uom" type="UomLength" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="Measure" type="Measure"/>
+	<xs:complexType name="Measure">
+		<xs:annotation>
+			<xs:documentation>The result from performing the act or process of ascertaining the extent, dimensions, or quantity of some entity.
+A measure is always associated to a unit of measure. Ratio measures where the two base measures are in the same units (often considered unit-less) should be associated to UnitOfMeasure (same meter/meter for map scale) so that conversions to non-unitless ratios can be accomplished (such as miles/inch).</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="value" type="Number" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The numerical value quantifying the extent or size of some quantity, in the units specified by the associated UnitOfMeasure class.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="uom" type="UnitOfMeasure" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The measure in question.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="MeasureType" type="MeasureType"/>
+	<xs:complexType name="MeasureType">
+		<xs:annotation>
+			<xs:documentation>The MeasureType code list enumerates the types of measures handled by the system that uses it. The default base list consist of those most commonly associated to geographic information, but the list can be extended, for example, to accommodate scientific measures that used different types units (power, temperatures, pressure, wavelength, frequency, work, acceleration, momentum, etc.)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="area" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="length" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="angle" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="time" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="velocity" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="volume" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="scale" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="weight" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Volume" type="Volume"/>
+	<xs:complexType name="Volume">
+		<xs:complexContent>
+			<xs:extension base="Measure">
+				<xs:sequence>
+					<xs:element name="uom" type="UomVolume" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="Weight" type="Weight"/>
+	<xs:complexType name="Weight">
+		<xs:complexContent>
+			<xs:extension base="Measure">
+				<xs:sequence>
+					<xs:element name="uom" type="UomWeight" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="Scale" type="Scale"/>
+	<xs:complexType name="Scale">
+		<xs:annotation>
+			<xs:documentation>The ratio of one quantity to another, often unitless in the case where the two quantities use the same unit. </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Measure">
+				<xs:sequence>
+					<xs:element name="uom" type="UomScale" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="sourceUnits" type="UomLength" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="targetUnits" type="UomLength" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="StandardUnits" type="StandardUnits"/>
+	<xs:complexType name="StandardUnits">
+		<xs:annotation>
+			<xs:documentation>A list of all the standard units in the particular system in use. In most cases these units will be ISO standards, but that is not necessary to the workings of the system. Each name will correspond to a local instance of UnitOfMeasue. Each member of the MeasureType code list must have a corresponding member in the StandardUnits list. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="meter" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="second" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="radian" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="squareMeter" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cubicMeter" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="meters/second" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="meter/meter" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="kilogram" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="SubUnitsPerUnit" type="SubUnitsPerUnit"/>
+	<xs:complexType name="SubUnitsPerUnit">
+		<xs:annotation>
+			<xs:documentation>An association attribute that links a master unit to a subunit of the same type, such as feet and inches. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="factor" type="Number" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The number of subunits per unit. Normally an integer, but not always. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Time" type="Time"/>
+	<xs:complexType name="Time">
+		<xs:complexContent>
+			<xs:extension base="Measure">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="UnitOfMeasure" type="UnitOfMeasure"/>
+	<xs:complexType name="UnitOfMeasure" abstract="true">
+		<xs:annotation>
+			<xs:documentation>Any of the systems devised to measure some physical quantity such distance or area or a system devised to measure such things as the passage of time.
+
+The classes of UnitOfMeasure are determined by the member "measureType." Subclasses are not needed for implementation, but their use makes type constraints on measure valued attributes easier to specify. 
+
+-- conversionToISOstandardUnit is not null only if the conversion is a simple scale</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="uomName" type="CharacterString" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The name(s) of a particular unit of measure.  Examples would include the following: 1) for uomArea - square feet, 2) for uomTime - seconds, 3)for uomArea - miles and 4) uomAngle - degrees.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="uomSymbol" type="CharacterString" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The symbol used for this unit of measure, such at "ft" for feet, or "m" for meter. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="measureType" type="MeasureType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nameStandardUnit" type="CharacterString" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Name of the standard units to which this unit of measure can be directly converted. If this variable is NULL, then the standard unit for this measure type given by the local copy of the StandardsUnits code list. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="scaleToStandardUnit" type="Real" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Multiplicative factor for conversion of this unit of measure to the standard one (often the ISO standard unit). This is NULL (or equivalent zero (0)) if the conversion is not simply a linear one. 
+If the implementation system used for this object does not support NULL, the  scale set to 0 is equivalent to NULL for both scale and offset. 
+If X is the current unit, and S is the standard one the of two variables scale(ToStandardUnit) and offset(ToStandardUnit) can be used to make the conversion from X to S by:
+
+S = offset + scale*X
+
+and, conversely,
+
+X = (S-offset)/scale</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="offsetToStandardUnit" type="Real" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>See scaleToStandardUnit for a description. Again, this variable is NULL is no linear conversion is possible. If the two units are only a scale in difference, then this number is zero (0). If the implementation system used for this object does not support NULL, the then scale set to 0 is equivalent to NULL for both scale and offset. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="formula" type="CharacterString" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>An algebraic formula (probably in some programming language) converting this unit of measure (represented in the formula by its uomSymbol) to the ISO standard (represented by its symbol. This member attribute is not required, but it is a valuable piece of documentation. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="subunit" type="UnitOfMeasure" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="UnitsList" type="UnitsList"/>
+	<xs:complexType name="UnitsList">
+		<xs:annotation>
+			<xs:documentation>A list of all units supported by the system in use. By definition, this list must contain the StandardUnits used for the implementation in which it is used. </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="StandardUnits">
+				<xs:sequence>
+					<xs:element name="foot" type="xs:string" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="squareFoot" type="xs:string" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="cubicYard" type="xs:string" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="UomAngle" type="UomAngle"/>
+	<xs:complexType name="UomAngle">
+		<xs:annotation>
+			<xs:documentation>Any of the measuring systems commonly used to measure angles.  In the US, The sexagesimal system of degrees, minutes and seconds is frequently used.  The radian measurement system is also used.  In other parts of the world the grad angle measuring system is used.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="UnitOfMeasure">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="UomAngularVelocity" type="UomAngularVelocity"/>
+	<xs:complexType name="UomAngularVelocity">
+		<xs:annotation>
+			<xs:documentation>&lt;UsedBy&gt;
+&lt;NameSpace&gt;ISO 19116 Positioning Services&lt;/NameSpace&gt;
+&lt;Class&gt;PS_RotationAxis&lt;/Class&gt;
+&lt;Package&gt;Positioning Service Model&lt;/Package&gt;
+&lt;Attribute&gt;unitSize&lt;/Attribute&gt;
+&lt;Type&gt;UomAngularVelocity&lt;/Type&gt;
+&lt;UsedBy&gt;</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="UomVelocity">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="UomArea" type="UomArea"/>
+	<xs:complexType name="UomArea">
+		<xs:annotation>
+			<xs:documentation>Any of the measuring systems commonly used to measure area.  Common units include square length units, such as square meters and square feet.  Other common unit include acres (in the US) and hectares.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="UnitOfMeasure">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="UomCurrency" type="UomCurrency"/>
+	<xs:complexType name="UomCurrency">
+		<xs:complexContent>
+			<xs:extension base="UnitOfMeasure">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="UomLength" type="UomLength"/>
+	<xs:complexType name="UomLength">
+		<xs:annotation>
+			<xs:documentation>Any of the measuring systems to measure the length, distance between two entities.  Example are the English System of feet and inches or the metric system of  millimeters, centimeters and meters, also the System International (SI) System of Units.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="UnitOfMeasure">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="UomScale" type="UomScale"/>
+	<xs:complexType name="UomScale">
+		<xs:annotation>
+			<xs:documentation>Any of the measuring systems commonly used to measure scale, or the ratio between quantities with the same unit.  Scale factors are often unitless.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="UnitOfMeasure">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="UomTime" type="UomTime"/>
+	<xs:complexType name="UomTime">
+		<xs:complexContent>
+			<xs:extension base="UnitOfMeasure">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="UomVelocity" type="UomVelocity"/>
+	<xs:complexType name="UomVelocity">
+		<xs:annotation>
+			<xs:documentation>Units for measure of velocity, usually a combination of time and distance units. </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="UnitOfMeasure">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="UomVolume" type="UomVolume"/>
+	<xs:complexType name="UomVolume">
+		<xs:complexContent>
+			<xs:extension base="UnitOfMeasure">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="UomWeight" type="UomWeight"/>
+	<xs:complexType name="UomWeight">
+		<xs:complexContent>
+			<xs:extension base="UnitOfMeasure">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="Velocity" type="Velocity"/>
+	<xs:complexType name="Velocity">
+		<xs:annotation>
+			<xs:documentation>The measure of motion in terms of speed in a particular direction.  It is usually calculated using the simple formula, the change in position during a given time interval.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Measure">
+				<xs:sequence>
+					<xs:element name="time" type="UomTime" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>the units of time used to measure this velocity</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="distance" type="UomLength" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The unit of distance or length used to measure the velocity.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="uom" type="UomVelocity" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Units used to measure this velocity, usually denoted as distance/time</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

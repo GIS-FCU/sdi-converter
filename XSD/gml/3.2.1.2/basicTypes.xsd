@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include/>
+	<xs:include/>
+	<xs:include/>
+	<xs:include/>
+	<xs:element name="Code" type="Code"/>
+	<xs:complexType name="Code">
+		<xs:complexContent>
+			<xs:extension base="CharacterString">
+				<xs:sequence>
+					<xs:element name="codespace" type="URI" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="CodeList" type="CodeList"/>
+	<xs:complexType name="CodeList">
+		<xs:complexContent>
+			<xs:extension base="NameList">
+				<xs:sequence>
+					<xs:element name="codeSpace" type="URI" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="CodeOrNilReasonList" type="CodeOrNilReasonList"/>
+	<xs:complexType name="CodeOrNilReasonList">
+		<xs:complexContent>
+			<xs:extension base="NameOrNilReasonList">
+				<xs:sequence>
+					<xs:element name="codeSpace" type="URI" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="Coordinates" type="Coordinates"/>
+	<xs:complexType name="Coordinates">
+		<xs:complexContent>
+			<xs:extension base="CharacterString">
+				<xs:sequence>
+					<xs:element name="decimal" type="CharacterString" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="cs" type="CharacterString" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="ts" type="CharacterString" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="MeasureList" type="MeasureList"/>
+	<xs:complexType name="MeasureList">
+		<xs:complexContent>
+			<xs:extension base="doubleList">
+				<xs:sequence>
+					<xs:element name="uom" type="UnitOfMeasure" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="MeasureOrNilReason" type="MeasureOrNilReason"/>
+	<xs:complexType name="MeasureOrNilReason">
+		<xs:sequence>
+			<xs:element name="value" type="Measure" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nilReason" type="NilReason" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="MeasureOrNilReasonList" type="MeasureOrNilReasonList"/>
+	<xs:complexType name="MeasureOrNilReasonList">
+		<xs:complexContent>
+			<xs:extension base="doubleOrNilReasonList">
+				<xs:sequence>
+					<xs:element name="uom" type="UnitOfMeasure" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="NCNameList" type="NCNameList"/>
+	<xs:complexType name="NCNameList">
+		<xs:complexContent>
+			<xs:extension base="NameList">
+				<xs:sequence>
+					<xs:element name="list" type="xs:string" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="NameList" type="NameList"/>
+	<xs:complexType name="NameList">
+		<xs:sequence>
+			<xs:element name="list" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="NameOrNilReason" type="NameOrNilReason"/>
+	<xs:complexType name="NameOrNilReason">
+		<xs:sequence>
+			<xs:element name="value" type="CharacterString" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nilReason" type="NilReason" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="NameOrNilReasonList" type="NameOrNilReasonList"/>
+	<xs:complexType name="NameOrNilReasonList">
+		<xs:sequence>
+			<xs:element name="list" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="NilReason" type="NilReason"/>
+	<xs:complexType name="NilReason">
+		<xs:sequence>
+			<xs:element name="NilReasonEnumeration" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="URI" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="NilReasonEnumeration" type="NilReasonEnumeration"/>
+	<xs:complexType name="NilReasonEnumeration">
+		<xs:annotation>
+			<xs:documentation>Utility type. Allowable values and their approximate semantics are:
+
+innapplicable - the object does not have a value
+missing - the value is not available
+template - the value will be available later
+unknown - the value cannot be computed
+withheld - the value is not divulged 
+        
+Specific communities may agree to assign more strict semantics when these terms are used in a particular context.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="inapplicable" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="missing" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="template" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="unknown" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="withheld" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PositiveInteger" type="PositiveInteger"/>
+	<xs:complexType name="PositiveInteger">
+		<xs:complexContent>
+			<xs:extension base="Integer">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="QNameList" type="QNameList"/>
+	<xs:complexType name="QNameList">
+		<xs:complexContent>
+			<xs:extension base="NameList">
+				<xs:sequence>
+					<xs:element name="list" type="xs:string" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="Sign">
+		<xs:restriction base="xs:&lt;undefined&gt;">
+			<xs:enumeration value="&quot;+&quot;"/>
+			<xs:enumeration value="&quot;-&quot;"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="URI" type="URI"/>
+	<xs:complexType name="URI">
+		<xs:complexContent>
+			<xs:extension base="CharacterString">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="booleanList" type="booleanList"/>
+	<xs:complexType name="booleanList">
+		<xs:sequence>
+			<xs:element name="list" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="booleanOrNilReason" type="booleanOrNilReason"/>
+	<xs:complexType name="booleanOrNilReason">
+		<xs:sequence>
+			<xs:element name="value" type="Boolean" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nilReason" type="NilReason" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="booleanOrNilReasonList" type="booleanOrNilReasonList"/>
+	<xs:complexType name="booleanOrNilReasonList">
+		<xs:sequence>
+			<xs:element name="list" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="doubleList" type="doubleList"/>
+	<xs:complexType name="doubleList">
+		<xs:sequence>
+			<xs:element name="list" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="doubleOrNilReason" type="doubleOrNilReason"/>
+	<xs:complexType name="doubleOrNilReason">
+		<xs:sequence>
+			<xs:element name="value" type="Real" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nilReason" type="NilReason" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="doubleOrNilReasonList" type="doubleOrNilReasonList"/>
+	<xs:complexType name="doubleOrNilReasonList">
+		<xs:sequence>
+			<xs:element name="list" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="integerList" type="integerList"/>
+	<xs:complexType name="integerList">
+		<xs:sequence>
+			<xs:element name="list" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="integerOrNilReason" type="integerOrNilReason"/>
+	<xs:complexType name="integerOrNilReason">
+		<xs:sequence>
+			<xs:element name="value" type="Integer" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nilReason" type="NilReason" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="integerOrNilReasonList" type="integerOrNilReasonList"/>
+	<xs:complexType name="integerOrNilReasonList">
+		<xs:sequence>
+			<xs:element name="list" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="stringOrNilReason" type="stringOrNilReason"/>
+	<xs:complexType name="stringOrNilReason">
+		<xs:sequence>
+			<xs:element name="value" type="CharacterString" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nilReason" type="NilReason" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

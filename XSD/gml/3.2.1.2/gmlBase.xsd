@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.motc.gov.tw/BaseTypes" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0">
+	<xs:import namespace=""/>
+	<xs:import namespace=""/>
+	<xs:import namespace=""/>
+	<xs:element name="Identifier" type="Identifier"/>
+	<xs:complexType name="Identifier">
+		<xs:sequence>
+			<xs:element name="localId" type="CharacterString" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="namespace" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="validPeriod" type="TM_Period" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="versionId" type="DateTime" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

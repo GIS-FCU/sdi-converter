@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.motc.gov.tw/RailNetwork" xmlns:ra="http://www.motc.gov.tw/RailNetwork" version="1.0" xmlns:gml="http://www.opengis.net/gml/3.2">
+	<xs:import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<xs:annotation>
+		<xs:appinfo>
+			<gml:gmlProfileSchema>http://schemas.opengis.net/gml/3.2.1/gml.xsd</gml:gmlProfileSchema>
+		</xs:appinfo>
+	</xs:annotation>
+</xs:schema>

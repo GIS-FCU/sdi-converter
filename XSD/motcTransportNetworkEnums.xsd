@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.motc.gov.tw/TransportNetwork" xmlns:net="http://www.motc.gov.tw/TransportNetwork" xmlns:gml="http://www.opengis.net/gml/3.2">
+	<xs:import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<xs:simpleType name="AccessRestrictionValueType">
+		<xs:annotation>
+			<xs:documentation>通行限制代碼。</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="net:AccessRestrictionValueEnumerationType net:AccessRestrictionValueOtherType"/>
+	</xs:simpleType>
+	<xs:simpleType name="AccessRestrictionValueEnumerationType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="seasonal">
+				<xs:annotation>
+					<xs:documentation>季節性通行。</xs:documentation>
+					<xs:appinfo>
+						<gml:description>seasonal</gml:description>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="physicallyImpossible">
+				<xs:annotation>
+					<xs:documentation>實體無法通行。</xs:documentation>
+					<xs:appinfo>
+						<gml:description>physicallyImpossible</gml:description>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="forbiddenLegally">
+				<xs:annotation>
+					<xs:documentation>法規禁止通行。</xs:documentation>
+					<xs:appinfo>
+						<gml:description>forbiddenLegally</gml:description>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="toll">
+				<xs:annotation>
+					<xs:documentation>需收費始能通行。</xs:documentation>
+					<xs:appinfo>
+						<gml:description>toll</gml:description>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="private">
+				<xs:annotation>
+					<xs:documentation>僅私人可通行。</xs:documentation>
+					<xs:appinfo>
+						<gml:description>private</gml:description>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="public">
+				<xs:annotation>
+					<xs:documentation>一般皆可通行。</xs:documentation>
+					<xs:appinfo>
+						<gml:description>public</gml:description>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AccessRestrictionValueOtherType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="other: \w{2,}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LinkDirectionValueType">
+		<xs:annotation>
+			<xs:documentation>行車方向代碼。</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="net:LinkDirectionValueEnumerationType net:LinkDirectionValueOtherType"/>
+	</xs:simpleType>
+	<xs:simpleType name="LinkDirectionValueEnumerationType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="inOppositeDirection">
+				<xs:annotation>
+					<xs:documentation>車行方向與數化方向反向。</xs:documentation>
+					<xs:appinfo>
+						<gml:description>inOppositeDirection</gml:description>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="inDirection">
+				<xs:annotation>
+					<xs:documentation>車行方向與數化方向同向。</xs:documentation>
+					<xs:appinfo>
+						<gml:description>inDirection</gml:description>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="bothDirections">
+				<xs:annotation>
+					<xs:documentation>雙向通行。</xs:documentation>
+					<xs:appinfo>
+						<gml:description>bothDirections</gml:description>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LinkDirectionValueOtherType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="other: \w{2,}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="POITypeValueType">
+		<xs:annotation>
+			<xs:documentation>地標類型代碼。</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="net:POITypeValueEnumerationType net:POITypeValueOtherType"/>
+	</xs:simpleType>
+	<xs:simpleType name="POITypeValueEnumerationType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="recreation">
+				<xs:annotation>
+					<xs:documentation>休閒遊憩點，如：景點、遊樂場、購物中心等。</xs:documentation>
+					<xs:appinfo>
+						<gml:description>recreation</gml:description>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="government">
+				<xs:annotation>
+					<xs:documentation>政府機關，如：警察局、消防隊、郵局等。</xs:documentation>
+					<xs:appinfo>
+						<gml:description>government</gml:description>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="education">
+				<xs:annotation>
+					<xs:documentation>文教機構，如：學校、圖書館、文化中心等。</xs:documentation>
+					<xs:appinfo>
+						<gml:description>education</gml:description>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="accomodation">
+				<xs:annotation>
+					<xs:documentation>住宿點，如：飯店、民宿等。</xs:documentation>
+					<xs:appinfo>
+						<gml:description>accomodation</gml:description>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="transportation">
+				<xs:annotation>
+					<xs:documentation>交通運輸場站，如：機場、火車站、捷運站等。</xs:documentation>
+					<xs:appinfo>
+						<gml:description>transportation</gml:description>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="POITypeValueOtherType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="other: \w{2,}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="VehicleRestrictionValueType">
+		<xs:annotation>
+			<xs:documentation>交通工具限制代碼。</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="net:VehicleRestrictionValueEnumerationType net:VehicleRestrictionValueOtherType"/>
+	</xs:simpleType>
+	<xs:simpleType name="VehicleRestrictionValueEnumerationType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="maxTotalWeight">
+				<xs:annotation>
+					<xs:documentation>最大重量限制。</xs:documentation>
+					<xs:appinfo>
+						<gml:description>maxTotalWeight</gml:description>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="maxLength">
+				<xs:annotation>
+					<xs:documentation>最大長度限制。</xs:documentation>
+					<xs:appinfo>
+						<gml:description>maxLength</gml:description>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="maxWidth">
+				<xs:annotation>
+					<xs:documentation>最大寬度限制。</xs:documentation>
+					<xs:appinfo>
+						<gml:description>maxWidth</gml:description>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="maxHeight">
+				<xs:annotation>
+					<xs:documentation>最大高度限制。</xs:documentation>
+					<xs:appinfo>
+						<gml:description>maxHeight</gml:description>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="VehicleRestrictionValueOtherType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="other: \w{2,}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="VerticalPositionValueType">
+		<xs:annotation>
+			<xs:documentation>垂直位置代碼。</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="net:VerticalPositionValueEnumerationType net:VerticalPositionValueOtherType"/>
+	</xs:simpleType>
+	<xs:simpleType name="VerticalPositionValueEnumerationType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="suspended">
+				<xs:annotation>
+					<xs:documentation>懸空。</xs:documentation>
+					<xs:appinfo>
+						<gml:description>suspended</gml:description>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="elevated">
+				<xs:annotation>
+					<xs:documentation>高架。</xs:documentation>
+					<xs:appinfo>
+						<gml:description>elevated</gml:description>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="underground">
+				<xs:annotation>
+					<xs:documentation>地下。</xs:documentation>
+					<xs:appinfo>
+						<gml:description>underground</gml:description>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="onGround">
+				<xs:annotation>
+					<xs:documentation>地面。</xs:documentation>
+					<xs:appinfo>
+						<gml:description>onGround</gml:description>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="VerticalPositionValueOtherType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="other: \w{2,}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TransportTypeEnumType">
+		<xs:annotation>
+			<xs:documentation>網路種類代碼。</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="water">
+				<xs:annotation>
+					<xs:documentation>水路運輸。</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="air">
+				<xs:annotation>
+					<xs:documentation>航空運輸。</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="rail">
+				<xs:annotation>
+					<xs:documentation>軌道運輸，如：火車、捷運、高鐵、輕軌等。</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="road">
+				<xs:annotation>
+					<xs:documentation>公路運輸。</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
