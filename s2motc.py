@@ -5,12 +5,15 @@ __author__ = 'Superbil'
 __version__ = '0.1.0'
 
 import shapefile
+import logging
 
+log = logging.getLogger()
+log.setLevel(logging.DEBUG)
 sf = shapefile.Reader("shapefiles/路網數值圖103年_西屯區道路路段")
 
 # 確認 shapeType 種類
 if sf.shapeType is 3:
-    print("PolyLine")
+    log.debug("PolyLine")
     # srs = sf.shapeRecords()
     mapping = {}
     index = 0
@@ -21,4 +24,4 @@ if sf.shapeType is 3:
             mapping[key] = index
         index = index + 1
 
-    print(mapping)
+    log.debug(mapping)
