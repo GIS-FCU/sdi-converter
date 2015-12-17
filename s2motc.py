@@ -23,5 +23,13 @@ if sf.shapeType is 3:
             key = f[0]
             mapping[key] = index
         index = index + 1
-
     log.debug(mapping)
+
+    # 抓特定道路名稱
+    l = list()
+    for r in sf.records():
+        n = r[mapping['roadname']]
+        if "台12" in str(n):
+            l.append(r)
+
+    log.debug(l)
