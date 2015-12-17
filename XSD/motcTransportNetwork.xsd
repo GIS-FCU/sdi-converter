@@ -32,23 +32,39 @@
 		<xs:attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<xs:attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</xs:complexType>
-	<xs:element name="Event" type="net:EventType" substitutionGroup="net:NetworkCharacteristic">
+	<xs:element name="Event" type="net:EventType" substitutionGroup="gml:AbstractFeature">
 		<xs:annotation>
 			<xs:documentation>發生於運輸網路中的特定事件，如：壅塞、事故等。</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 	<xs:complexType name="EventType">
 		<xs:complexContent>
-			<xs:extension base="net:NetworkCharacteristicType">
+			<xs:extension base="gml:AbstractFeatureType">
 				<xs:sequence>
+					<xs:element name="location" type="net:NetworkReferencePropertyType" minOccurs="1" maxOccurs="unbounded"/>
+					<xs:element name="validTo" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>事件結束時間</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="validFrom" type="xs:dateTime">
+						<xs:annotation>
+							<xs:documentation>事件初始時間</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element name="updateTime" type="xs:dateTime">
 						<xs:annotation>
-							<xs:documentation>詮釋資料更新時間</xs:documentation>
+							<xs:documentation>資料更新時間</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="description" type="xs:string">
 						<xs:annotation>
 							<xs:documentation>事件描述。</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="eventID" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>事件編號</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 				</xs:sequence>
@@ -124,7 +140,7 @@
 		<xs:complexContent>
 			<xs:extension base="gml:AbstractFeatureType">
 				<xs:sequence>
-					<xs:element name="networkRef" type="net:NetworkReferencePropertyType" minOccurs="1" maxOccurs="unbounded"/>
+					<xs:element name="networkRef" type="net:NetworkReferencePropertyType" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="validTo" type="xs:dateTime" minOccurs="0" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>網路屬性失效時間。</xs:documentation>
@@ -148,7 +164,7 @@
 	</xs:complexType>
 	<xs:element name="NetworkReference" type="net:NetworkReferenceType" substitutionGroup="gml:AbstractFeature">
 		<xs:annotation>
-			<xs:documentation>網路位置參照的最上層類別。</xs:documentation>
+			<xs:documentation>描述運輸網路上任一空間位置的方式，位置可為單一點位、線型或區域。</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 	<xs:complexType name="NetworkReferenceType">
@@ -169,7 +185,7 @@
 	</xs:complexType>
 	<xs:element name="SimpleLinearReference" type="net:SimpleLinearReferenceType" substitutionGroup="net:LinkReference">
 		<xs:annotation>
-			<xs:documentation>僅作用於線形網路元件一部份的線形參照，作用範圍以網路元件之端點為起始參考點的兩個位置進行定義。</xs:documentation>
+			<xs:documentation>僅作用於線型網路元件一部份的參照，作用範圍以網路元件之端點為起始參考點的兩個位置進行定義。</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 	<xs:complexType name="SimpleLinearReferenceType">
@@ -178,7 +194,7 @@
 				<xs:sequence>
 					<xs:element name="toPosition" type="gml:LengthType" minOccurs="0" maxOccurs="1">
 						<xs:annotation>
-							<xs:documentation>線形參照結束位置距網路元件之參考點的距離。</xs:documentation>
+							<xs:documentation>線型參照結束位置距網路元件之參考點的距離。</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="offset" type="gml:LengthType" minOccurs="0" maxOccurs="1">
@@ -204,7 +220,7 @@
 	</xs:complexType>
 	<xs:element name="SimplePointReference" type="net:SimplePointReferenceType" substitutionGroup="net:LinkReference">
 		<xs:annotation>
-			<xs:documentation>僅作用於線形網路元件之某處的點參照，作用範圍以網路元件之端點為起始參考點的位置進行定義。</xs:documentation>
+			<xs:documentation>僅作用於線型網路元件之某處的點參照，作用範圍以網路元件之端點為起始參考點的位置進行定義。</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 	<xs:complexType name="SimplePointReferenceType">
@@ -484,7 +500,7 @@
 	</xs:complexType>
 	<xs:element name="Network" type="net:NetworkType" substitutionGroup="gml:AbstractFeature">
 		<xs:annotation>
-			<xs:documentation>代表運輸網路整體。</xs:documentation>
+			<xs:documentation>運輸網路，下分道路網路、軌道網路、航空網路、水運網路。</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 	<xs:complexType name="NetworkType">
@@ -509,7 +525,7 @@
 					</xs:element>
 					<xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1">
 						<xs:annotation>
-							<xs:documentation>網路名稱。</xs:documentation>
+							<xs:documentation>運輸網路描述。</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 				</xs:sequence>
@@ -568,6 +584,9 @@
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="referedProperty" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>網路元件多值(multi-values)或線型分佈(linearly distributed)之特殊屬性。</xs:documentation>
+						</xs:annotation>
 						<xs:complexType>
 							<xs:complexContent>
 								<xs:extension base="gml:AbstractMemberType">
@@ -630,7 +649,7 @@
 	</xs:complexType>
 	<xs:element name="POI" type="net:POIType" substitutionGroup="net:TransportPoint">
 		<xs:annotation>
-			<xs:documentation>具有特殊意義或用途的點位，如：地標、地物。</xs:documentation>
+			<xs:documentation>具有特殊意義或用途的點位。</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 	<xs:complexType name="POIType">
@@ -639,12 +658,12 @@
 				<xs:sequence>
 					<xs:element name="poiType" type="net:POITypeValueType">
 						<xs:annotation>
-							<xs:documentation>興趣點種類。</xs:documentation>
+							<xs:documentation>地標種類。</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="name" type="xs:string">
 						<xs:annotation>
-							<xs:documentation>興趣點名稱。</xs:documentation>
+							<xs:documentation>地標名稱。</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 				</xs:sequence>

@@ -12,41 +12,26 @@
 			<xs:enumeration value="roundabout">
 				<xs:annotation>
 					<xs:documentation>圓環。</xs:documentation>
-					<xs:appinfo>
-						<gml:description>roundabout</gml:description>
-					</xs:appinfo>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="roadServiceArea">
 				<xs:annotation>
 					<xs:documentation>服務區。</xs:documentation>
-					<xs:appinfo>
-						<gml:description>roadServiceArea</gml:description>
-					</xs:appinfo>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="roadEnd">
 				<xs:annotation>
 					<xs:documentation>路段終點。</xs:documentation>
-					<xs:appinfo>
-						<gml:description>roadEnd</gml:description>
-					</xs:appinfo>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="pseudoNode">
 				<xs:annotation>
 					<xs:documentation>無義節點。</xs:documentation>
-					<xs:appinfo>
-						<gml:description>pseudoNode</gml:description>
-					</xs:appinfo>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="junction">
 				<xs:annotation>
 					<xs:documentation>交叉路口。</xs:documentation>
-					<xs:appinfo>
-						<gml:description>junction</gml:description>
-					</xs:appinfo>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
@@ -64,44 +49,29 @@
 	</xs:simpleType>
 	<xs:simpleType name="FormOfRoadValueEnumerationType">
 		<xs:restriction base="xs:string">
-			<xs:enumeration value="bicycleOnlyRoad">
+			<xs:enumeration value="slowVehicleRoad">
 				<xs:annotation>
-					<xs:documentation>自行車專用道。</xs:documentation>
-					<xs:appinfo>
-						<gml:description>bicycleOnlyRoad</gml:description>
-					</xs:appinfo>
+					<xs:documentation>專指有快慢車道分隔島之機慢車道，各類車種均可通行。</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="motorbikeOnlyRoad">
 				<xs:annotation>
 					<xs:documentation>機車專用道。</xs:documentation>
-					<xs:appinfo>
-						<gml:description>motorbikeOnlyRoad</gml:description>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="slowVehicleRoad">
-				<xs:annotation>
-					<xs:documentation>專指有快慢車道分隔島之機慢車道，各類車種均可通行。</xs:documentation>
-					<xs:appinfo>
-						<gml:description>slowVehicleRoad</gml:description>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="carOnlyRoad">
-				<xs:annotation>
-					<xs:documentation>汽車專用道，包含有快慢車道分隔島之快車道。</xs:documentation>
-					<xs:appinfo>
-						<gml:description>carOnlyRoad</gml:description>
-					</xs:appinfo>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="generalRoad">
 				<xs:annotation>
 					<xs:documentation>專指無快慢車道分隔島之道路，各類車種均可通行。</xs:documentation>
-					<xs:appinfo>
-						<gml:description>generalRoad</gml:description>
-					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="carOnlyRoad">
+				<xs:annotation>
+					<xs:documentation>汽車專用道，包含有快慢車道分隔島之快車道。</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="bicycleOnlyRoad">
+				<xs:annotation>
+					<xs:documentation>自行車專用道。</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
@@ -122,121 +92,76 @@
 			<xs:enumeration value="RE">
 				<xs:annotation>
 					<xs:documentation>市區快速道路。</xs:documentation>
-					<xs:appinfo>
-						<gml:description>RE</gml:description>
-					</xs:appinfo>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="RD">
 				<xs:annotation>
 					<xs:documentation>市區道路。</xs:documentation>
-					<xs:appinfo>
-						<gml:description>RD</gml:description>
-					</xs:appinfo>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="OT">
 				<xs:annotation>
 					<xs:documentation>無路名道路。</xs:documentation>
-					<xs:appinfo>
-						<gml:description>OT</gml:description>
-					</xs:appinfo>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="OR">
 				<xs:annotation>
 					<xs:documentation>路名不定。</xs:documentation>
-					<xs:appinfo>
-						<gml:description>OR</gml:description>
-					</xs:appinfo>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="HW">
 				<xs:annotation>
 					<xs:documentation>國道。</xs:documentation>
-					<xs:appinfo>
-						<gml:description>HW</gml:description>
-					</xs:appinfo>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="HU">
 				<xs:annotation>
 					<xs:documentation>國道附屬道路。</xs:documentation>
-					<xs:appinfo>
-						<gml:description>HU</gml:description>
-					</xs:appinfo>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="AL">
 				<xs:annotation>
 					<xs:documentation>巷弄。</xs:documentation>
-					<xs:appinfo>
-						<gml:description>AL</gml:description>
-					</xs:appinfo>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="4W">
 				<xs:annotation>
 					<xs:documentation>產業道路。</xs:documentation>
-					<xs:appinfo>
-						<gml:description>4W</gml:description>
-					</xs:appinfo>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="3W">
 				<xs:annotation>
 					<xs:documentation>鄉道。</xs:documentation>
-					<xs:appinfo>
-						<gml:description>3W</gml:description>
-					</xs:appinfo>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="3U">
 				<xs:annotation>
 					<xs:documentation>鄉道與其它道路共線，共線道路最高等級為鄉道</xs:documentation>
-					<xs:appinfo>
-						<gml:description>3U</gml:description>
-					</xs:appinfo>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="2W">
 				<xs:annotation>
 					<xs:documentation>縣道。</xs:documentation>
-					<xs:appinfo>
-						<gml:description>2W</gml:description>
-					</xs:appinfo>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="2U">
 				<xs:annotation>
 					<xs:documentation>縣道與其它道路共線，共線道路最高等級為縣道。</xs:documentation>
-					<xs:appinfo>
-						<gml:description>2U</gml:description>
-					</xs:appinfo>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="1W">
 				<xs:annotation>
 					<xs:documentation>省道。</xs:documentation>
-					<xs:appinfo>
-						<gml:description>1W</gml:description>
-					</xs:appinfo>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="1U">
 				<xs:annotation>
 					<xs:documentation>省道與其它道路共線，共線道路最高等級為省道。</xs:documentation>
-					<xs:appinfo>
-						<gml:description>1U</gml:description>
-					</xs:appinfo>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="1E">
 				<xs:annotation>
 					<xs:documentation>省道快速道路。</xs:documentation>
-					<xs:appinfo>
-						<gml:description>1E</gml:description>
-					</xs:appinfo>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
@@ -254,36 +179,24 @@
 	</xs:simpleType>
 	<xs:simpleType name="RoadStructureTypeValueEnumerationType">
 		<xs:restriction base="xs:string">
-			<xs:enumeration value="tunnel">
-				<xs:annotation>
-					<xs:documentation>隧道。</xs:documentation>
-					<xs:appinfo>
-						<gml:description>tunnel</gml:description>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="elevated">
-				<xs:annotation>
-					<xs:documentation>高架或橋樑</xs:documentation>
-					<xs:appinfo>
-						<gml:description>elevated</gml:description>
-					</xs:appinfo>
-				</xs:annotation>
-			</xs:enumeration>
 			<xs:enumeration value="underGround">
 				<xs:annotation>
 					<xs:documentation>地下道路。</xs:documentation>
-					<xs:appinfo>
-						<gml:description>underGround</gml:description>
-					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="tunnel">
+				<xs:annotation>
+					<xs:documentation>隧道。</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="ground">
 				<xs:annotation>
 					<xs:documentation>平面道路。</xs:documentation>
-					<xs:appinfo>
-						<gml:description>ground</gml:description>
-					</xs:appinfo>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="elevated">
+				<xs:annotation>
+					<xs:documentation>高架或橋樑</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
@@ -304,17 +217,11 @@
 			<xs:enumeration value="minimum">
 				<xs:annotation>
 					<xs:documentation>速度限制最低值</xs:documentation>
-					<xs:appinfo>
-						<gml:description>minimum</gml:description>
-					</xs:appinfo>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="maximum">
 				<xs:annotation>
 					<xs:documentation>速度限制最高值</xs:documentation>
-					<xs:appinfo>
-						<gml:description>maximum</gml:description>
-					</xs:appinfo>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
@@ -335,49 +242,31 @@
 			<xs:enumeration value="truck">
 				<xs:annotation>
 					<xs:documentation>卡貨車。</xs:documentation>
-					<xs:appinfo>
-						<gml:description>truck</gml:description>
-					</xs:appinfo>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="motorcycle">
 				<xs:annotation>
 					<xs:documentation>機車。</xs:documentation>
-					<xs:appinfo>
-						<gml:description>motorcycle</gml:description>
-					</xs:appinfo>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="car">
 				<xs:annotation>
 					<xs:documentation>汽車。</xs:documentation>
-					<xs:appinfo>
-						<gml:description>car</gml:description>
-					</xs:appinfo>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="bus">
 				<xs:annotation>
 					<xs:documentation>公車。</xs:documentation>
-					<xs:appinfo>
-						<gml:description>bus</gml:description>
-					</xs:appinfo>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="bicycle">
 				<xs:annotation>
 					<xs:documentation>自行車。</xs:documentation>
-					<xs:appinfo>
-						<gml:description>bicycle</gml:description>
-					</xs:appinfo>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="allVehicles">
 				<xs:annotation>
 					<xs:documentation>全部車種。</xs:documentation>
-					<xs:appinfo>
-						<gml:description>allVehicles</gml:description>
-					</xs:appinfo>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
