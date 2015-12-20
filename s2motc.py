@@ -18,10 +18,9 @@ if sf.shapeType is 3:
     mapping = {}
     index = 0
     for f in sf.fields:
-        # 跳過第 0 個這個不是 field
         if index is not 0:
             key = f[0]
-            mapping[key] = index
+            mapping[key] = index - 1
         index = index + 1
     log.debug(mapping)
 
@@ -31,5 +30,4 @@ if sf.shapeType is 3:
         n = r[mapping['roadname']]
         if "台12" in str(n):
             l.append(r)
-
     log.debug(l)
