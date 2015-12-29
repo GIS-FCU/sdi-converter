@@ -69,10 +69,10 @@ if sf.shapeType is 3:
     log.debug(m)
 
     for r in sf.records():
-        setElement(sf, m, root)
-        break
+        if "台12" == r[m['roadname']]:
+            setElement(sf, m, root)
 
     log.debug(ET.dump(root))
 
-    sys.stdout.write('<?xml version="1.0" ?>\n')
+    sys.stdout.write('<?xml version="1.0" encoding="UTF-8"?>\n')
     ET.dump(root)
