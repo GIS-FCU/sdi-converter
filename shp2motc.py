@@ -21,7 +21,7 @@ def create_mapping(fields):
     log.debug(mapping)
     return mapping
 
-def setElement(sf, mapping, root):
+def setRefered(sf, mapping, root):
     # net:ReferedProperty
     referedProperty = ET.SubElement(root, 'net:ReferedProperty')
     rID = ET.SubElement(referedProperty, 'ro:RoadIdentity')
@@ -38,12 +38,10 @@ def setElement(sf, mapping, root):
     # roadaliasn = ET.SubElement(rID, "ro:roadAliasName")
     # roadaliasn.text = str(r[m['roadaliasn']])
 
+def setLink(sf, mapping, root):
     link = ET.SubElement(root, 'net:link')
     link.set('xlink:type', 'simple')
     rlink = ET.SubElement(link, 'ro:RoadLink')
-
-    nGeo = ET.SubElement(rlink, 'net:geometry')
-    nGeo.set('xlink:type', 'simple')
 
     trival = ET.SubElement(rlink, 'ro:trival')
     trival.text = 'false'
@@ -56,6 +54,21 @@ def setElement(sf, mapping, root):
 
     rID = ET.SubElement(root, 'ro:roadID')
     rID.text = r[m['roadid']]
+
+    nGeo = ET.SubElement(rlink, 'net:geometry')
+    nGeo.set('xlink:type', 'simple')
+    # 線段的 GML
+
+    rStartNode = ET.SubElement(rlink, 'net:startNode')
+    # setRoadNode(rStartNode, fnode)
+
+    rEndNode = ET.SubElement(rlink, 'net:endNode')
+    # setRoadNode(rEndNode, tnode)
+
+def setRoadNode(e, t):
+    rn = ET.SubElement(e, 'ro:RoadNode')
+    ri = ET.SubElement(rn, 'ro:roadNodeID')
+    ri.text = t
 
 log = logging.getLogger()
 # log.setLevel(logging.DEBUG)
@@ -70,7 +83,8 @@ if sf.shapeType is 3:
 
     for r in sf.records():
         if "台12" == r[m['roadname']]:
-            setElement(sf, m, root)
+            setRefered(sf, m, root)
+            break
 
     log.debug(ET.dump(root))
 
