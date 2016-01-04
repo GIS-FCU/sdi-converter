@@ -83,6 +83,12 @@ if sf.shapeType is 3:
 
     for r in sf.records():
         if "台12" == r[m['roadname']]:
+def addPoint(e, srsName, pointA, pointB):
+    lineE = ET.SubElement(e, 'gml:LineString')
+    pointElement.set('srsName', srsName)
+    posElement = ET.SubElement(lineE, 'gml:posList')
+    posElement.text = "{} {} {} {}".format(point[0][0], point[0][1], point[1][0], point[1][1])
+
             setRefered(sf, m, root)
             break
 
