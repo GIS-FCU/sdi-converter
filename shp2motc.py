@@ -21,7 +21,7 @@ def create_mapping(fields):
     log.debug(mapping)
     return mapping
 
-def setRefered(sf, mapping, root):
+def setRefered(sf, mapping, root, r):
     # net:ReferedProperty
     referedProperty = ET.SubElement(root, 'net:ReferedProperty')
     rID = ET.SubElement(referedProperty, 'ro:RoadIdentity')
@@ -70,29 +70,36 @@ def setRoadNode(e, t):
     ri = ET.SubElement(rn, 'ro:roadNodeID')
     ri.text = t
 
-log = logging.getLogger()
-# log.setLevel(logging.DEBUG)
-sf = shapefile.Reader("shapefiles/路網數值圖103年_西屯區道路路段")
-
-# 確認 shapeType 種類
-if sf.shapeType is 3:
-    log.debug("PolyLine")
-    root = ET.Element('ro:Road')
-    m = create_mapping(sf.fields)
-    log.debug(m)
-
-    for r in sf.records():
-        if "台12" == r[m['roadname']]:
 def addPoint(e, srsName, pointA, pointB):
     lineE = ET.SubElement(e, 'gml:LineString')
     pointElement.set('srsName', srsName)
     posElement = ET.SubElement(lineE, 'gml:posList')
     posElement.text = "{} {} {} {}".format(point[0][0], point[0][1], point[1][0], point[1][1])
 
-            setRefered(sf, m, root)
-            break
+def main():
+    log = logging.getLogger()
+    # log.setLevel(logging.DEBUG)
+    sf = shapefile.Reader("shapefiles/路網數值圖103年_西屯區道路路段")
+
+    # 確認 shapeType 種類
+    if sf.shapeType is 3:
+        log.debug("PolyLine")
+        root = ET.Element('ro:Road')
+        m = create_mapping(sf.fields)
+        log.debug(m)
+
+        index = 0
+        for rec in sf.iterRecords():
+            if "台12" == rec[m['roadname']]:
+                setRefered(sf, m, root, rec)
+                index = index + 1
+                break
 
     log.debug(ET.dump(root))
 
     sys.stdout.write('<?xml version="1.0" encoding="UTF-8"?>\n')
     ET.dump(root)
+
+# if __name__ == '__main__':
+#     main()'
+main()
