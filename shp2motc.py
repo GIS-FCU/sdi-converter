@@ -10,6 +10,9 @@ import xml.etree.ElementTree as ET
 
 import shapefile
 
+log = logging.getLogger()
+# log.setLevel(logging.DEBUG)
+
 def create_mapping(fields):
     mapping = {}
     index = 0
@@ -27,18 +30,19 @@ def setRefered(sf, mapping, root, r):
     rID = ET.SubElement(referedProperty, 'ro:RoadIdentity')
 
     n = ET.SubElement(rID, "ro:roadName")
-    n.text = str(r[m['roadname']])
+    n.text = str(r[mapping['roadname']])
 
     # rc = ET.SubElement(rID, "ro:roadCode")
-    # rc.text = str(r[m['roadcode']])
+    # rc.text = str(r[mapping['roadcode']])
 
     roadType = ET.SubElement(rID, "ro:roadClass")
-    roadType.text = str(r[m['roadtype']])
+    roadType.text = str(r[mapping['roadtype']])
 
     # roadaliasn = ET.SubElement(rID, "ro:roadAliasName")
-    # roadaliasn.text = str(r[m['roadaliasn']])
+    # roadaliasn.text = str(r[mapping['roadaliasn']])
+    return referedProperty
 
-def setLink(sf, mapping, root):
+def setLink(sf, mapping, root, rec, point, counter):
     link = ET.SubElement(root, 'net:link')
     link.set('xlink:type', 'simple')
     rlink = ET.SubElement(link, 'ro:RoadLink')
@@ -47,38 +51,36 @@ def setLink(sf, mapping, root):
     trival.text = 'false'
 
     rStruct = ET.SubElement(rlink, 'ro:structureType')
-    rStruct.text = r[m['roadstruct']]
+    rStruct.text = rec[mapping['roadstruct']]
 
     rLinkID = ET.SubElement(rlink, 'ro:roadLinkID')
-    rLinkID.text = "{}-{}".format(r[m['roadid']], r[m['roadcomnum']])
+    rLinkID.text = "{}-{}".format(rec[mapping['roadid']], rec[mapping['roadcomnum']])
 
     rID = ET.SubElement(root, 'ro:roadID')
-    rID.text = r[m['roadid']]
+    rID.text = rec[mapping['roadid']]
 
     nGeo = ET.SubElement(rlink, 'net:geometry')
     nGeo.set('xlink:type', 'simple')
     # 線段的 GML
+    addPoint(nGeo, 'epsg:3826', point)
 
     rStartNode = ET.SubElement(rlink, 'net:startNode')
-    # setRoadNode(rStartNode, fnode)
-
+    # setRoadNode(rStartNode, fnodeID)
     rEndNode = ET.SubElement(rlink, 'net:endNode')
-    # setRoadNode(rEndNode, tnode)
+    # setRoadNode(rEndNode, tnodeID)
 
 def setRoadNode(e, t):
     rn = ET.SubElement(e, 'ro:RoadNode')
     ri = ET.SubElement(rn, 'ro:roadNodeID')
     ri.text = t
 
-def addPoint(e, srsName, pointA, pointB):
-    lineE = ET.SubElement(e, 'gml:LineString')
-    pointElement.set('srsName', srsName)
-    posElement = ET.SubElement(lineE, 'gml:posList')
-    posElement.text = "{} {} {} {}".format(point[0][0], point[0][1], point[1][0], point[1][1])
+def addPoint(e, srsName, points):
+    lineElement = ET.SubElement(e, 'gml:LineString')
+    lineElement.set('srsName', srsName)
+    posElement = ET.SubElement(lineElement, 'gml:posList')
+    posElement.text = "{} {} {} {}".format(points[0][0], points[0][1], points[1][0], points[1][1])
 
 def main():
-    log = logging.getLogger()
-    # log.setLevel(logging.DEBUG)
     sf = shapefile.Reader("shapefiles/路網數值圖103年_西屯區道路路段")
 
     # 確認 shapeType 種類
@@ -89,17 +91,18 @@ def main():
         log.debug(m)
 
         index = 0
+        rp = None
+        shapes = sf.shapes()
         for rec in sf.iterRecords():
             if "台12" == rec[m['roadname']]:
-                setRefered(sf, m, root, rec)
+                if rp is None:
+                    rp = setRefered(sf, m, root, rec)
+
+                setLink(sf, m, root, rec, shapes[index].points, index)
                 index = index + 1
                 break
 
     log.debug(ET.dump(root))
 
-    sys.stdout.write('<?xml version="1.0" encoding="UTF-8"?>\n')
-    ET.dump(root)
-
-# if __name__ == '__main__':
-#     main()'
-main()
+if __name__ == '__main__':
+    main()
