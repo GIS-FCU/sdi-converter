@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 __author__ = 'Superbil'
-__version__ = '0.2.0'
+__version__ = '0.3.0'
 
 import sys
 import logging
