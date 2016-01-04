@@ -100,9 +100,13 @@ def main():
 
                 setLink(sf, m, root, rec, shapes[index].points, index)
                 index = index + 1
-                break
 
-    log.debug(ET.dump(root))
+        log.debug(ET.dump(root))
+
+        tree = ET.ElementTree(root)
+        with open ('台12motc.xml', 'w') as f:
+            f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+            tree.write(f, encoding="unicode")
 
 if __name__ == '__main__':
     main()
