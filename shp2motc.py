@@ -9,20 +9,10 @@ import logging
 import xml.etree.ElementTree as ET
 
 import shapefile
+from motc import tools
 
 log = logging.getLogger()
 # log.setLevel(logging.DEBUG)
-
-def create_mapping(fields):
-    mapping = {}
-    index = 0
-    for f in fields:
-        if index is not 0:
-            key = f[0]
-            mapping[key] = index - 1
-        index = index + 1
-    log.debug(mapping)
-    return mapping
 
 def setRefered(sf, mapping, root, r):
     # net:ReferedProperty
@@ -87,7 +77,7 @@ def main():
     if sf.shapeType is 3:
         log.debug("PolyLine")
         root = ET.Element('ro:Road')
-        m = create_mapping(sf.fields)
+        m = tools.create_mapping(sf.fields)
         log.debug(m)
 
         index = 0
