@@ -65,9 +65,9 @@ def setLink(sf, mapping, root, rec, point, counter):
     addPoint(nGeo, 'epsg:3826', point)
 
     rStartNode = ET.SubElement(rlink, 'net:startNode')
-    # setRoadNode(rStartNode, fnodeID)
+    setRoadNode(rStartNode, rec[mapping['fnode']])
     rEndNode = ET.SubElement(rlink, 'net:endNode')
-    # setRoadNode(rEndNode, tnodeID)
+    setRoadNode(rEndNode, rec[mapping['tnode']])
 
 def setRoadNode(e, t):
     rn = ET.SubElement(e, 'ro:RoadNode')
