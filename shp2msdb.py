@@ -63,9 +63,13 @@ def insertRoad(conn, sf, mapping):
             d.strftime('%Y-%m-%d %H:%M:%S'),  # CreateTime
             )])
         conn.commit()
+
+
+def insertRoadLink(conn, sf, mapping):
+    cursor = conn.cursor()
     i = 0
     shapes = sf.shapes()
-    for rec in sf.iterShapes():
+    for rec in sf.iterRecords():
         d = datetime.datetime.fromtimestamp(int(rec[mapping['updatedate']]))
         g = "geometry::STGeomFromText('MULTIPOINT({} {}, {} {})', 0)".format(
             shapes[i].points[0][0],
@@ -75,17 +79,17 @@ def insertRoad(conn, sf, mapping):
         )
         cursor.executemany("""
         INSERT INTO tblRoadLink (RoadLinkID, RoadID, StartRoadID, EndRoadID, StructureType, Geometry, UpdateTime)
-            VALUES (%s,%s,%s,%s,%s,%s,%s)
-        """, [
+            VALUES (%s, %s, %s, %s, %d, %s, %s)
+        """, [(
             tools.create_RoadLink(rec[mapping['roadid']], rec[mapping['roadcomnum']]),   # RoadLinkID
-            rec[mapping['roadid']],           # RoadID
-            rec[mapping['fnode']],            # StartRoadID
-            rec[mapping['tnode']],            # EndRoadID
+            rec[mapping['roadid']][:30],           # RoadID
+            rec[mapping['fnode']][:20],            # StartRoadID
+            rec[mapping['tnode']][:20],            # EndRoadID
             rec[mapping['roadstruct']],       # StructureType
-            rec[mapping['']],                 # Geometry
+            g,                                # Geometry
             d.strftime('%Y-%m-%d %H:%M:%S'),  # UpdateTime
-            ])
-        cursor.commit()
+            )])
+        conn.commit()
         i = i + 1
 
 
@@ -103,8 +107,8 @@ def main():
 
     cursor.execute(CREATE_TABLE)
 
-    insertRoadLink(cursor, sf, m)
     insertRoad(conn, sf, m)
+    insertRoadLink(conn, sf, m)
 
     # Finish all
     conn.close()
