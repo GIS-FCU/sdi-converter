@@ -44,7 +44,7 @@ def setLink(sf, mapping, root, rec, point, counter):
     rStruct.text = rec[mapping['roadstruct']]
 
     rLinkID = ET.SubElement(rlink, 'ro:roadLinkID')
-    rLinkID.text = "{}-{}".format(rec[mapping['roadid']], rec[mapping['roadcomnum']])
+    rLinkID.text = tools.create_RoadLink(rec[mapping['roadid']], rec[mapping['roadcomnum']])
 
     rID = ET.SubElement(root, 'ro:roadID')
     rID.text = rec[mapping['roadid']]

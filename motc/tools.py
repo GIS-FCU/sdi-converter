@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+
 def create_mapping(fields):
     mapping = {}
     index = 0
@@ -10,3 +11,7 @@ def create_mapping(fields):
             mapping[key] = index - 1
         index = index + 1
     return mapping
+
+
+def create_RoadLink(roadID, roadComnum):
+    return "{}-{}".format(roadID, roadComnum)
