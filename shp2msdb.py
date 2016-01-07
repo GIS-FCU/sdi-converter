@@ -47,22 +47,22 @@ CREATE TABLE [dbo].[tblRoadLink](
 """
 
 
-def insertRoad(cursor, sf, mapping):
+def insertRoad(conn, sf, mapping):
+    cursor = conn.cursor()
     for rec in sf.iterRecords():
+        d = datetime.datetime.now()
         cursor.executemany("""
-        INSERT INTO tblRoad (RoadID, RoadName, RoadClass, RoadCode, RoadAliasName, LaneName)
+        INSERT INTO tblRoad (RoadID, RoadName, RoadClass, RoadCode, RoadAliasName, CreateTime)
             VALUES (%s, %s, %s, %s, %s, %s)
-        """, [rec[mapping['roadid']][:30],           # RoadID
-              rec[mapping['roadname']][:20],         # RoadName
-              rec[mapping['roadtype']][:5],         # RoadClass
-              rec[mapping['roadcode']][:10],         # RoadCode
-              rec[mapping['roadaliasn']][:20],       # RoadAliasName
-              rec[mapping['rdnamelane']][:10],  # LaneName
-        ])
-        cursor.commit()
-
-
-def insertRoadLink(cursor, sf, mapping):
+        """, [(
+            rec[mapping['roadid']][:30],      # RoadID
+            rec[mapping['roadname']][:20],    # RoadName
+            rec[mapping['roadtype']][:5],     # RoadClass
+            rec[mapping['roadcode']][:10],    # RoadCode
+            rec[mapping['roadaliasn']][:20],  # RoadAliasName
+            d.strftime('%Y-%m-%d %H:%M:%S'),  # CreateTime
+            )])
+        conn.commit()
     i = 0
     shapes = sf.shapes()
     for rec in sf.iterShapes():
@@ -103,8 +103,8 @@ def main():
 
     cursor.execute(CREATE_TABLE)
 
-    insertRoad(cursor, sf, m)
     insertRoadLink(cursor, sf, m)
+    insertRoad(conn, sf, m)
 
     # Finish all
     conn.close()
