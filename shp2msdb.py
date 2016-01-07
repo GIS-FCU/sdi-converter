@@ -54,19 +54,16 @@ GO
 
 def insertRoad(cursor, sf, mapping):
     for rec in sf.iterRecords():
-        d = datetime.datetime.fromtimestamp(int(rec[mapping['updatedate']]))
         cursor.executemany("""
-        INSERT INTO tblRoad (RoadID, RoadName, RoadClass, RoadCode, RoadAliasName, LaneName, CreateTime)
-            VALUES (%s,%s,%s,%s,%s,%s,%s,%s)
-        """, [
-            rec[mapping['roadid']],           # RoadID
-            rec[mapping['roadname']],         # RoadName
-            rec[mapping['roadtype']],         # RoadClass
-            rec[mapping['roadcode']],         # RoadCode
-            rec[mapping['roadaliasn']],       # RoadAliasName
-            rec[mapping['rdnamelane']],       # LaneName
-            d.strftime('%Y-%m-%d %H:%M:%S'),  # CreateTime
-            ])
+        INSERT INTO tblRoad (RoadID, RoadName, RoadClass, RoadCode, RoadAliasName, LaneName)
+            VALUES (%s, %s, %s, %s, %s, %s)
+        """, [rec[mapping['roadid']][:30],           # RoadID
+              rec[mapping['roadname']][:20],         # RoadName
+              rec[mapping['roadtype']][:5],         # RoadClass
+              rec[mapping['roadcode']][:10],         # RoadCode
+              rec[mapping['roadaliasn']][:20],       # RoadAliasName
+              rec[mapping['rdnamelane']][:10],  # LaneName
+        ])
         cursor.commit()
 
 
