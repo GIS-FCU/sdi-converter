@@ -80,8 +80,9 @@ def main():
     server = getenv("MSSQL_SERVER")
     user = getenv("MSSQL_USERNAME")
     password = getenv("MSSQL_PASSWORD")
+    database = "motc"
 
-    conn = pymssql.connect(server, user, password, "db")
+    conn = pymssql.connect(server, user, password, database)
     cursor = conn.cursor()
 
     cursor.execute(CREATE_TABLE)
