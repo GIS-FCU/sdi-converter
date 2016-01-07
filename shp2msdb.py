@@ -7,7 +7,6 @@ __version__ = '0.1.0'
 from os import getenv
 from motc import tools
 import datetime
-import logging
 import pymssql
 import shapefile
 
@@ -28,8 +27,6 @@ CREATE TABLE [dbo].[tblRoad](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
-GO
-
 CREATE TABLE [dbo].[tblRoadLink](
         [PID] [int] IDENTITY(1,1) NOT NULL,
         [RoadLinkID] [varchar](20) NOT NULL,
@@ -47,8 +44,6 @@ CREATE TABLE [dbo].[tblRoadLink](
         [PID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-
-GO
 """
 
 
