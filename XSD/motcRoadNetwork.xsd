@@ -320,12 +320,12 @@
 		<xs:complexContent>
 			<xs:extension base="net:LinkType">
 				<xs:sequence>
-					<xs:element name="trivial" type="xs:boolean">
+					<xs:element name="trivial" type="xs:boolean" minOccurs="0" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>於路口處因數化方式產生的短路段，稱為無義路段。</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element name="structureType" type="ro:RoadStructureTypeValueType">
+					<xs:element name="structureType" type="ro:RoadStructureTypeValueType" minOccurs="0" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>道路結構。</xs:documentation>
 						</xs:annotation>
@@ -335,7 +335,7 @@
 							<xs:documentation>路段唯一識別碼。</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element name="formOfRoad" type="ro:FormOfRoadValueType">
+					<xs:element name="formOfRoad" type="ro:FormOfRoadValueType" minOccurs="0" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>道路類型。</xs:documentation>
 						</xs:annotation>

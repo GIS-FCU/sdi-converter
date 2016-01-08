@@ -416,7 +416,7 @@
 		<xs:complexContent>
 			<xs:extension base="net:GeneralizedLinkType">
 				<xs:sequence>
-					<xs:element name="link" minOccurs="1" maxOccurs="unbounded">
+					<xs:element name="link" minOccurs="0" maxOccurs="unbounded">
 						<xs:annotation>
 							<xs:documentation>序列中所有的有向線段。</xs:documentation>
 						</xs:annotation>
@@ -472,7 +472,7 @@
 			<xs:extension base="net:TransportPointType">
 				<xs:sequence>
 					<xs:element name="route" type="net:LinkSetPropertyType"/>
-					<xs:element name="sequenceNo" type="xs:integer">
+					<xs:element name="sequenceNo" type="xs:integer" minOccurs="0" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>自里程起始點起算，至該里程標識的序位號碼，從1起算。</xs:documentation>
 						</xs:annotation>
