@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ro:Road xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmd="http://www.isotc211.org/2005/gmd"
+    xmlns:ro="http://www.motc.gov.tw/RoadNetwork"
+    xmlns:net="http://www.motc.gov.tw/TransportNetwork" xmlns:xlink="http://www.w3.org/1999/xlink"    
+    xmlns:base="http://www.motc.gov.tw/BaseTypes" xmlns="http://www.motc.gov.tw/RoadEvent"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.motc.gov.tw/RoadEvent ../XSD/motcRoadEvent.xsd 
+                        http://www.motc.gov.tw/RoadNetwork ../XSD/motcRoadNetwork.xsd"
+    gml:id="linkSeq" >    
+    <!--道路屬性，非必要，可出現多次-->
+    <net:referedProperty>
+        <ro:RoadIdentity gml:id="ID102"> 
+            <!--路名，非必要 -->            
+            <ro:roadName>安和路</ro:roadName>
+            <!--道路等級，非必要-->
+            <ro:roadClass>RD</ro:roadClass>            
+        </ro:RoadIdentity>
+    </net:referedProperty>
+    <!-- 連結序列的集合,必要,出現次數1次以上 -->
+    <net:link>
+        <ro:RoadLinkSequence gml:id="linkSeq1">             
+            <ro:roadLinkSeqID>linkSeq1</ro:roadLinkSeqID>
+        </ro:RoadLinkSequence>
+    </net:link>
+    <net:link>
+        <ro:RoadLinkSequence gml:id="linkSeq2">             
+            <ro:roadLinkSeqID>linkSeq2</ro:roadLinkSeqID>
+        </ro:RoadLinkSequence>
+    </net:link>    
+    <!--道路編號,必要-->
+    <ro:roadID>road1</ro:roadID>
+</ro:Road>

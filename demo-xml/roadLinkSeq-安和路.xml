@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ro:RoadLinkSequence xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmd="http://www.isotc211.org/2005/gmd"
+    xmlns:ro="http://www.motc.gov.tw/RoadNetwork"
+    xmlns:net="http://www.motc.gov.tw/TransportNetwork" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gss="http://www.isotc211.org/2005/gss"
+    xmlns:gsr="http://www.isotc211.org/2005/gsr" xmlns:gts="http://www.isotc211.org/2005/gts"
+    xmlns:base="http://www.motc.gov.tw/BaseTypes" xmlns="http://www.motc.gov.tw/RoadEvent"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.motc.gov.tw/RoadEvent ../XSD/motcRoadEvent.xsd 
+                        http://www.motc.gov.tw/RoadNetwork ../XSD/motcRoadNetwork.xsd"
+    gml:id="linkSeq" >    
+    <!-- 線段的集合,必要,出現次數1次以上 -->
+    <net:link>
+        <!-- 具有方向性的線段,必要 -->
+        <net:DirectedLink>
+            <net:link>
+                <ro:RoadLink gml:id="link1">
+                    <!-- 線段編碼,必要 -->
+                    <ro:roadLinkID>B-6-325211</ro:roadLinkID>
+                </ro:RoadLink>
+            </net:link>
+            <!--與數化方向同向或反向，必要-->
+            <net:direction>+</net:direction>
+        </net:DirectedLink>
+    </net:link>
+    <!-- 具有方向性的線段,必要 -->
+    <net:link>
+        <net:DirectedLink>
+            <net:link>
+                <ro:RoadLink gml:id="link2">
+                    <!-- 線段編碼,必要 -->
+                    <ro:roadLinkID>B-4U-050526</ro:roadLinkID>
+                </ro:RoadLink>
+            </net:link>
+            <!--與數化方向同向或反向,必要-->
+            <net:direction>+</net:direction>
+        </net:DirectedLink>
+    </net:link>  
+    <!--連節序列編號,必要-->
+    <ro:roadLinkSeqID>linkSeq1</ro:roadLinkSeqID>
+</ro:RoadLinkSequence>

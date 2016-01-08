@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RoadEvent xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmd="http://www.isotc211.org/2005/gmd"
+    xmlns:ro="http://www.motc.gov.tw/RoadNetwork"
+    xmlns:net="http://www.motc.gov.tw/TransportNetwork" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gss="http://www.isotc211.org/2005/gss"
+    xmlns:gsr="http://www.isotc211.org/2005/gsr" xmlns:gts="http://www.isotc211.org/2005/gts"
+    xmlns:base="http://www.motc.gov.tw/BaseTypes" xmlns="http://www.motc.gov.tw/RoadEvent"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.motc.gov.tw/RoadEvent ../XSD/motcRoadEvent.xsd 
+                        http://www.motc.gov.tw/RoadNetwork ../XSD/motcRoadNetwork.xsd"
+    gml:id="A_151026_0001">    
+    <!-- 交叉路口的空間表達方式 -->
+    <net:location>
+        <ro:RoadPointReference gml:id="ID039">    
+            <net:element>
+                <ro:RoadNode gml:id="S6F1ALKMV">
+                    <!--是何線段的結束節點,非必要-->
+                    <net:spokeEnd>
+                        <ro:RoadLink gml:id="link1">
+                            <!--路名,非必要-->
+                            <net:referedProperty>
+                                <ro:RoadIdentity gml:id="link1-id"> 
+                                    <ro:roadName>西屯路三段</ro:roadName>       
+                                </ro:RoadIdentity>
+                            </net:referedProperty>            
+                            <!-- 線段編碼,必要 -->
+                            <ro:roadLinkID>B-6-244400</ro:roadLinkID>  
+                        </ro:RoadLink>
+                    </net:spokeEnd>
+                    <!--是何線段的開始節點,非必要-->
+                    <net:spokeStart>
+                        <ro:RoadLink gml:id="link2">
+                            <!--路名,非必要-->
+                            <net:referedProperty>
+                                <ro:RoadIdentity gml:id="link2-id"> 
+                                    <ro:roadName>安和路</ro:roadName>       
+                                </ro:RoadIdentity>
+                            </net:referedProperty>
+                            <!-- 線段編碼,必要 -->
+                            <ro:roadLinkID>B-4U-050526</ro:roadLinkID>     
+                        </ro:RoadLink>
+                    </net:spokeStart>                    
+                    <!--節點id,必要-->
+                    <ro:roadNodeID>S6F1ALKMV</ro:roadNodeID>
+                </ro:RoadNode>
+            </net:element>
+            <!--方向性，必要-->
+            <net:direction>inOppositeDirection</net:direction>
+            <!--橫向偏移距離，非必要-->
+            <net:offset uom="km">0</net:offset>            
+        </ro:RoadPointReference>
+    </net:location>        
+    <!-- 事件發生開始時間 -->
+    <net:validFrom>2015-10-26T18:13:51.0</net:validFrom>
+    <!-- 事件詮釋資料更新時間 -->    
+    <net:updateTime>2015-10-26T18:13:51.0</net:updateTime>        
+    <!-- 事件描述 -->
+    <net:description>西屯路三段發生自小客車擦撞，無人員傷亡</net:description> 
+    <net:eventID>201510260001</net:eventID>
+    <impact>partiallyBlocked</impact>
+    <!-- 處理狀態: 0=新增 -->
+    <status>new</status>    
+    <sourceUnit>B</sourceUnit>
+    <source>user</source>    
+    <region>B</region>    
+    <range>lessThan10KM</range>        
+    <period>realtime</period>    
+    <!-- 事件類別: 1=事故 -->
+    <eventType>accident</eventType>
+    <blockedLane>right</blockedLane>  
+    
+</RoadEvent>
