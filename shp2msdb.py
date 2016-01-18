@@ -7,6 +7,7 @@ __version__ = '0.1.0'
 from os import getenv
 from motc import tools
 import datetime
+import argparse
 import pymssql
 import shapefile
 
@@ -97,12 +98,14 @@ def main():
     sf = shapefile.Reader("shapefiles/路網數值圖103年_西屯區道路路段")
     m = tools.create_mapping(sf.fields)
 
-    server = getenv("MSSQL_SERVER")
-    user = getenv("MSSQL_USERNAME")
-    password = getenv("MSSQL_PASSWORD")
-    database = "motc"
+    parser = argparse.ArgumentParser()
+    parser.add_argument('server', help='server ip')
+    parser.add_argument('username', help='user name')
+    parser.add_argument('password', help='user password')
+    parser.add_argument('database', help='database name')
+    args = parser.parse_args()
 
-    conn = pymssql.connect(server, user, password, database)
+    conn = pymssql.connect(args.server, args.username, args.password, args.database)
     cursor = conn.cursor()
 
     cursor.execute(CREATE_TABLE)
