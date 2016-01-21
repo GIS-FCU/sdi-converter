@@ -72,7 +72,7 @@ def insertRoadLink(conn, sf, mapping):
     shapes = sf.shapes()
     for rec in sf.iterRecords():
         d = datetime.datetime.fromtimestamp(int(rec[mapping['updatedate']]))
-        g = "geometry::STGeomFromText('MULTIPOINT({} {}, {} {})', 0)".format(
+        g = "MULTIPOINT(({} {}), ({} {}))".format(
             shapes[i].points[0][0],
             shapes[i].points[0][1],
             shapes[i].points[1][0],
