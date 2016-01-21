@@ -79,15 +79,16 @@ def insertRoadLink(conn, sf, mapping):
             shapes[i].points[1][1]
         )
         cursor.executemany("""
-        INSERT INTO tblRoadLink (RoadLinkID, RoadID, StartRoadID, EndRoadID, StructureType, Geometry, UpdateTime)
-            VALUES (%s, %s, %s, %s, %d, %s, %s)
+        INSERT INTO tblRoadLink (RoadLinkID, RoadID, StartRoadID, EndRoadID, StructureType, Geometry, Trival, UpdateTime)
+            VALUES (%s, %s, %s, %s, %d, %s, %s, %s)
         """, [(
             tools.create_RoadLink(rec[mapping['roadid']], rec[mapping['roadcomnum']]),   # RoadLinkID
-            rec[mapping['roadid']][:30],           # RoadID
-            rec[mapping['fnode']][:20],            # StartRoadID
-            rec[mapping['tnode']][:20],            # EndRoadID
+            rec[mapping['roadid']][:30],      # RoadID
+            rec[mapping['fnode']][:20],       # StartRoadID
+            rec[mapping['tnode']][:20],       # EndRoadID
             rec[mapping['roadstruct']],       # StructureType
             g,                                # Geometry
+            0,                                # Trival
             d.strftime('%Y-%m-%d %H:%M:%S'),  # UpdateTime
             )])
         conn.commit()
