@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.motc.gov.tw/TransportNetwork" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:net="http://www.motc.gov.tw/TransportNetwork" xmlns:gml="http://www.opengis.net/gml/3.2">
+	<xs:include schemaLocation="motcCodeList.xsd"/>
+	<xs:import schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd" namespace="http://www.opengis.net/gml/3.2"/>
+	<xs:element name="LinkSet" type="net:LinkSet"/>
+	<xs:complexType name="LinkSet">
+		<xs:sequence>
+			<xs:element ref="net:links" minOccurs="0"></xs:element><!-- 手動修改 -->
+		</xs:sequence>
+	</xs:complexType>
+	<!-- 手動加入（起） -->
+	<xs:element name="links">
+		<xs:complexType>
+			<xs:sequence minOccurs="1" maxOccurs="unbounded">
+				<xs:element ref="net:Link"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element> 
+	<!-- 手動加入（止） -->
+	<xs:element name="Node" type="net:Node"/>
+	<xs:complexType name="Node">
+		<xs:annotation>
+			<xs:documentation>連結(Link)的起始或終點，為運輸網路中重要的位置點之一。如：道路網路的路口，或軌道網路的車站等。</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="geometry" type="gml:PointPropertyType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>節點之零(0-dimension)維幾何，可衍生所在位置之坐標。</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="modifiedDate" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>填至年月即可，如：200806</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Link" type="net:Link"/>
+	<xs:complexType name="Link">
+		<xs:annotation>
+			<xs:documentation>連接兩節點(Node)之1維物件，如：道路網路的路段或軌道網路的軌道等。</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="geometry" type="gml:CurvePropertyType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>線段之1維(1-dimension)幾何，可衍生其線形、起迄點、長度等資訊。</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="modifiedDate" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>填至年月即可，如：200806</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="trafficDirection" type="net:LinkDirectionValue" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="startNode" type="net:Node" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="endNode" type="net:Node" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

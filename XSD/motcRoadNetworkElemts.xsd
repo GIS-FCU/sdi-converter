@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.motc.gov.tw/RoadNetwork" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ro="http://www.motc.gov.tw/RoadNetwork" xmlns:net="http://www.motc.gov.tw/TransportNetwork">
+	<xs:import namespace="http://www.motc.gov.tw/TransportNetwork" schemaLocation="motcTransportNetwork.xsd"/>
+	<xs:element name="Road" type="ro:Road"/>
+	<xs:complexType name="Road">
+		<xs:complexContent>
+			<xs:extension base="net:LinkSet">
+				<xs:sequence>
+					<xs:element name="roadClass" type="xs:string" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="roadCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="roadName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+				<xs:attribute name="roadID" use="required" type="xs:string"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="RoadLink" type="ro:RoadLink" substitutionGroup="net:Link"/> <!-- 手動修改 -->
+	<xs:complexType name="RoadLink">
+		<xs:annotation>
+			<xs:documentation>兩路段節點之線型連接，可單線表示雙向，亦可雙線分別表示相反之行車方向</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="net:Link">
+				<xs:sequence>
+					<xs:element name="address" type="net:Address" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="aliaslName" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>可為道路俗名(中山高)或橋樑及隧道名稱。</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="structureType" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>道路結構。</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="width" type="xs:int" minOccurs="0" maxOccurs="1"/>
+					<xs:element ref="ro:affiliatedRoads" minOccurs="0"/><!-- 手動修改 -->
+				</xs:sequence>
+				<xs:attribute name="bridgeID" use="optional" type="xs:string"/>
+				<xs:attribute name="roadLinkID" use="required" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>路段唯一識別碼。</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="tunnelID" use="optional" type="xs:string"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- 手動加入(起) -->
+	<xs:element name="affiliatedRoads">
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded" minOccurs="1">
+				<xs:element ref="ro:Road"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- 手動加入(止) -->
+	<xs:element name="RoadNode" type="ro:RoadNode"/>
+	<xs:complexType name="RoadNode">
+		<xs:annotation>
+			<xs:documentation>路段端點或連接點。</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="net:Node">
+				<xs:sequence/>
+				<xs:attribute name="roadNodeID" use="required" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>與通用版電子地圖路口編碼一致。</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

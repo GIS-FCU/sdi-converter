@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.motc.gov.tw/RoadNetwork" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ro="http://www.motc.gov.tw/RoadNetwork" xmlns:net="http://www.motc.gov.tw/TransportNetwork" xmlns:gml="http://www.opengis.net/gml/3.2">
+	<xs:import namespace="http://www.motc.gov.tw/TransportNetwork" schemaLocation="motcTransportNetwork.xsd"/>
+	<xs:import schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd" namespace="http://www.opengis.net/gml/3.2"/>
+	<xs:include schemaLocation="motcRoadNetworkElemts.xsd"/>
+	<xs:element name="NetworkReference" type="ro:NetworkReference"/>
+	<xs:complexType name="NetworkReference">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:element name="RoadLinearReference" type="ro:RoadLinearReference" substitutionGroup="ro:NetworkReference"/>
+	<xs:complexType name="RoadLinearReference">
+		<xs:annotation>
+			<xs:documentation>提供三種道路專屬線型參照起迄點的紀錄方式，包括：門牌地址、道路里程標識、經緯度。</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ro:NetworkReference">
+				<xs:sequence>
+					<xs:element name="fromAddress" type="net:Address" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>道路線型參照之起始地址，僅適用於有門牌之市區道路。</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="fromMileage" type="ro:RoadMarkerPost" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>道路線型參照之起始里程數，僅適用於有里程標之道路。</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="fromPoint" type="gml:PointPropertyType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>道路線型參照之起始點，適用於起始點有坐標之情況。</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="onRoadLink" type="ro:RoadLink" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>點參照之參考路段。</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="toAddress" type="net:Address" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>道路線型參照之終止地址，僅適用於有門牌之市區道路。</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="toMileage" type="ro:RoadMarkerPost" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>道路線型參照之終止里程數，僅適用於有里程標之道路。</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="toPoint" type="gml:PointPropertyType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>道路線型參照之終止點，適用於終止點有坐標之情況。</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="RoadMarkerPost" type="ro:RoadMarkerPost"/>
+	<xs:complexType name="RoadMarkerPost">
+		<xs:annotation>
+			<xs:documentation>路徑(Route)或道路沿線用以標示距起始點距離的標識物(通常有固定常度之間隔)。</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="mileage" type="xs:int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>里程數。</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="postTag" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>道路里程標識名稱，如：16K+500，通常可對應里程數(mileage)。</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="alongRoute" type="ro:Road" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="RoadPointReference" type="ro:RoadPointReference" substitutionGroup="ro:NetworkReference"/>
+	<xs:complexType name="RoadPointReference">
+		<xs:annotation>
+			<xs:documentation>僅作用於道路網路線型元件之某處的點參照，位置可用經緯度(atPoint)、門牌地址(address)或靠近之路口(nearRoadNode)進行定義，主要考量資料收集的方便性。</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ro:NetworkReference">
+				<xs:sequence>
+					<xs:element name="atAddress" type="net:Address" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>道路點參照之地址，僅適用於有門牌之市區道路。</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="atMileage" type="ro:RoadMarkerPost" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="atPoint" type="gml:PointPropertyType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>道路點參照之點位，僅適用於點參照有坐標之情況。</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="atRoadNode" type="ro:RoadNode" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>點參照所在的路段節點，適用於路口。</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="nearRoadNode" type="ro:RoadNode" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>點參照最鄰近之道路節點，適用於點參照附近有路段節點資訊時。</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="onRoadLink" type="ro:RoadLink" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>點參照之參考路段。</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="roadLinkDirection" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>點參照位於參考路段的方向，正(+)為與參考路段數化方向同向，負(-)為反向。</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>
