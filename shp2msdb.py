@@ -7,6 +7,7 @@ __version__ = '0.1.0'
 from os import getenv
 from motc import tools
 import datetime
+import argparse
 import pymssql
 import shapefile
 
@@ -71,22 +72,23 @@ def insertRoadLink(conn, sf, mapping):
     shapes = sf.shapes()
     for rec in sf.iterRecords():
         d = datetime.datetime.fromtimestamp(int(rec[mapping['updatedate']]))
-        g = "geometry::STGeomFromText('MULTIPOINT({} {}, {} {})', 0)".format(
+        g = "MULTIPOINT(({} {}), ({} {}))".format(
             shapes[i].points[0][0],
             shapes[i].points[0][1],
             shapes[i].points[1][0],
             shapes[i].points[1][1]
         )
         cursor.executemany("""
-        INSERT INTO tblRoadLink (RoadLinkID, RoadID, StartRoadID, EndRoadID, StructureType, Geometry, UpdateTime)
-            VALUES (%s, %s, %s, %s, %d, %s, %s)
+        INSERT INTO tblRoadLink (RoadLinkID, RoadID, StartRoadID, EndRoadID, StructureType, Geometry, Trival, UpdateTime)
+            VALUES (%s, %s, %s, %s, %d, %s, %s, %s)
         """, [(
             tools.create_RoadLink(rec[mapping['roadid']], rec[mapping['roadcomnum']]),   # RoadLinkID
-            rec[mapping['roadid']][:30],           # RoadID
-            rec[mapping['fnode']][:20],            # StartRoadID
-            rec[mapping['tnode']][:20],            # EndRoadID
+            rec[mapping['roadid']][:30],      # RoadID
+            rec[mapping['fnode']][:20],       # StartRoadID
+            rec[mapping['tnode']][:20],       # EndRoadID
             rec[mapping['roadstruct']],       # StructureType
             g,                                # Geometry
+            0,                                # Trival
             d.strftime('%Y-%m-%d %H:%M:%S'),  # UpdateTime
             )])
         conn.commit()
@@ -97,12 +99,14 @@ def main():
     sf = shapefile.Reader("shapefiles/路網數值圖103年_西屯區道路路段")
     m = tools.create_mapping(sf.fields)
 
-    server = getenv("MSSQL_SERVER")
-    user = getenv("MSSQL_USERNAME")
-    password = getenv("MSSQL_PASSWORD")
-    database = "motc"
+    parser = argparse.ArgumentParser()
+    parser.add_argument('server', help='server ip')
+    parser.add_argument('username', help='user name')
+    parser.add_argument('password', help='user password')
+    parser.add_argument('database', help='database name')
+    args = parser.parse_args()
 
-    conn = pymssql.connect(server, user, password, database)
+    conn = pymssql.connect(args.server, args.username, args.password, args.database)
     cursor = conn.cursor()
 
     cursor.execute(CREATE_TABLE)
