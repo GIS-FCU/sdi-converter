@@ -39,9 +39,7 @@
                 </endNode>
                 <width>20</width>
                 <ro:affiliatedRoads>            
-                    <ro:Road roadID="road002">
-                        
-                    </ro:Road>
+                    <ro:Road roadID="road002"/>
                     <ro:Road roadID="road003">
                         <roadClass>2W</roadClass>
                         <roadCode>125</roadCode>
