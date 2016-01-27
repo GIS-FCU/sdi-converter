@@ -15,35 +15,50 @@
 <ro:Road roadID="roadID02">
     <net:links>
         <ro:RoadLink roadLinkID="roadlink001" />        
-        <ro:RoadLink roadLinkID="roadlink002">            
+        <ro:RoadLink roadLinkID="roadlink002">                
             <geometry>
-                <gml:LineString gml:id="ID000">
-                    <gml:posList>0</gml:posList>
+                <gml:LineString gml:id="ID000" srsName="urn:ogc:def:crs:EPSG::3826">
+                    <gml:posList>212011 2675517 211945 2675393</gml:posList>
                 </gml:LineString>
-            </geometry>
-            <modifiedDate>modifiedDate0</modifiedDate>
+            </geometry>                
+            <modifiedDate>201601</modifiedDate>
             <trafficDirection>oneway</trafficDirection>
             <startNode>
                 <geometry>
-                    <gml:Point gml:id="ID003">
-                        <gml:coordinates>coordinates0</gml:coordinates>
+                    <gml:Point gml:id="ID003"  srsName="urn:ogc:def:crs:EPSG::3826">
+                        <gml:pos>212011 2675517</gml:pos>
                     </gml:Point>
                 </geometry>
-                <modifiedDate>modifiedDate1</modifiedDate>
+                <modifiedDate>201601</modifiedDate>
             </startNode>
             <endNode>
                 <geometry>
-                    <gml:Point gml:id="ID006">
-                        <gml:pos>0</gml:pos>
+                    <gml:Point gml:id="ID006" srsName="urn:ogc:def:crs:EPSG::3826">
+                        <gml:pos>212011 2675517</gml:pos>
                     </gml:Point>
                 </geometry>
-                <modifiedDate>modifiedDate2</modifiedDate>
+                <modifiedDate>201601</modifiedDate>
             </endNode>
+            <width>20</width>
+            <ro:affiliatedRoads>            
+                <ro:Road roadID="road002">
+                    
+                </ro:Road>
+                <ro:Road roadID="road003">
+                    <roadClass>2W</roadClass>
+                    <roadCode>125</roadCode>
+                    <roadName>縣125</roadName>                        
+                </ro:Road>
+                <ro:Road roadID="road004">
+                    <roadClass>RD</roadClass>
+                    <roadCode>6</roadCode>
+                    <roadName>市6</roadName> 
+                </ro:Road>                    
+            </ro:affiliatedRoads>
         </ro:RoadLink>
     </net:links>
-    
-    <roadClass>roadClass0</roadClass>
-    <roadCode>roadCode0</roadCode>
-    <roadName>roadName0</roadName>
+    <roadClass>RD</roadClass>
+    <roadCode></roadCode>
+    <roadName>西屯路三段</roadName>
 </ro:Road>
 </Roads>
