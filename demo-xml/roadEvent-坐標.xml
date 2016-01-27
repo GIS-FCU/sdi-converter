@@ -17,7 +17,7 @@
     <eventType>accident</eventType>
     <impact>fullyBlocked</impact>
     <period>periodical</period>
-    <range>lessThan10KM</range>
+    <!--<range>lessThan10KM</range>-->
     <source>cpa</source>
     <sourceAuthority>A</sourceAuthority>
     <status>duplicate</status>    
