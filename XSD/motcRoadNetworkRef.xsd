@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema targetNamespace="http://www.motc.gov.tw/RoadNetwork" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ro="http://www.motc.gov.tw/RoadNetwork" xmlns:net="http://www.motc.gov.tw/TransportNetwork" xmlns:gml="http://www.opengis.net/gml/3.2">
-	<xs:import namespace="http://www.motc.gov.tw/TransportNetwork" schemaLocation="motcTransportNetwork.xsd"/>
+<xs:schema targetNamespace="http://gis-t.motc.gov.tw/standards/schema/RoadNetwork" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ro="http://gis-t.motc.gov.tw/standards/schema/RoadNetwork" xmlns:net="http://gis-t.motc.gov.tw/standards/schema/TransportNetwork" xmlns:gml="http://www.opengis.net/gml/3.2">
+	<xs:import namespace="http://gis-t.motc.gov.tw/standards/schema/TransportNetwork" schemaLocation="motcTransportNetwork.xsd"/>
 	<xs:import schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd" namespace="http://www.opengis.net/gml/3.2"/>
 	<xs:include schemaLocation="motcRoadNetworkElemts.xsd"/>
 	<xs:element name="NetworkReference" type="ro:NetworkReference"/>

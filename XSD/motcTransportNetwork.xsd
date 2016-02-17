@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema targetNamespace="http://www.motc.gov.tw/TransportNetwork" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:net="http://www.motc.gov.tw/TransportNetwork">
+<xs:schema targetNamespace="http://gis-t.motc.gov.tw/standards/schema/TransportNetwork" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:net="http://gis-t.motc.gov.tw/standards/schema/TransportNetwork">
     <xs:include schemaLocation="motcTransportNetworkElemts.xsd"/><!-- 手動加入 -->
-    <xs:include schemaLocation="motcCodeList.xsd"/><!-- 手動加入 -->
+    <xs:include schemaLocation="motcTransportNetworkCodeList.xsd"/><!-- 手動加入 -->
     <xs:include schemaLocation="motcBaseTypes.xsd"/><!-- 手動加入 -->
 </xs:schema>
 

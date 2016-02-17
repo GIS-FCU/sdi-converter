@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema targetNamespace="http://www.motc.gov.tw/TransportNetwork" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:net="http://www.motc.gov.tw/TransportNetwork">
+<xs:schema targetNamespace="http://gis-t.motc.gov.tw/standards/schema/TransportNetwork" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:net="http://gis-t.motc.gov.tw/standards/schema/TransportNetwork">
 	<xs:element name="Address" type="net:Address"/>
 	<xs:complexType name="Address">
 		<xs:sequence>

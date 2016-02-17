@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema targetNamespace="http://www.motc.gov.tw/RoadEvent" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:roevt="http://www.motc.gov.tw/RoadEvent" xmlns:ro="http://www.motc.gov.tw/RoadNetwork" xmlns:net="http://www.motc.gov.tw/TransportNetwork">
-	<xs:import namespace="http://www.motc.gov.tw/TransportNetwork" schemaLocation="motcTransportNetwork.xsd"/>
-	<xs:import namespace="http://www.motc.gov.tw/RoadNetwork" schemaLocation="motcRoadNetwork.xsd"/>
+<xs:schema targetNamespace="http://gis-t.motc.gov.tw/standards/schema/RoadEvent" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:roevt="http://gis-t.motc.gov.tw/standards/schema/RoadEvent" xmlns:ro="http://gis-t.motc.gov.tw/standards/schema/RoadNetwork" xmlns:net="http://gis-t.motc.gov.tw/standards/schema/TransportNetwork">
+	<xs:include schemaLocation="motcRoadEventCodeList.xsd"/><!-- 手動加入 -->
+	<xs:import namespace="http://gis-t.motc.gov.tw/standards/schema/TransportNetwork" schemaLocation="motcTransportNetwork.xsd"/>
+	<xs:import namespace="http://gis-t.motc.gov.tw/standards/schema/RoadNetwork" schemaLocation="motcRoadNetwork.xsd"/>
 	<xs:element name="RoadEvent" type="roevt:RoadEvent"/>
 	<xs:complexType name="RoadEvent">
 		<xs:annotation>
 			<xs:documentation>道路事件之基本屬性及空間參照方式</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="blockedLane" type="net:BlockedLaneTypeValue" minOccurs="0" maxOccurs="1">
+			<xs:element name="blockedLane" type="roevt:BlockedLaneTypeValue" minOccurs="0" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>該筆路況事件所造成之車道阻斷數</xs:documentation>
 				</xs:annotation>
@@ -18,27 +19,27 @@
 					<xs:documentation>事件所在行政區。</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="eventType" type="net:EventTypeMajorValue" minOccurs="1" maxOccurs="1">
+			<xs:element name="eventType" type="roevt:EventTypeMajorValue" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>該路況事件之主類別</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="impact" type="net:EventImpactValue" minOccurs="0" maxOccurs="1">
+			<xs:element name="impact" type="roevt:EventImpactValue" minOccurs="0" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>事件衝擊程度</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="period" type="net:EventPeriodValue" minOccurs="0" maxOccurs="1">
+			<xs:element name="period" type="roevt:EventPeriodValue" minOccurs="0" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>事件週期性</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="range" type="net:BlockedLengthValue" minOccurs="0" maxOccurs="1">
+			<xs:element name="range" type="roevt:BlockedLengthValue" minOccurs="0" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>影響範圍</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="source" type="net:EventProviderValue" minOccurs="0" maxOccurs="1">
+			<xs:element name="source" type="roevt:EventProviderValue" minOccurs="0" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>訊息來源類型。</xs:documentation>
 				</xs:annotation>
@@ -48,7 +49,7 @@
 					<xs:documentation>訊息來源單位。</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="status" type="net:EventStatusValue" minOccurs="1" maxOccurs="1">
+			<xs:element name="status" type="roevt:EventStatusValue" minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>事件狀態</xs:documentation>
 				</xs:annotation>

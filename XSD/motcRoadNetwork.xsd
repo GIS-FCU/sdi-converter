@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema targetNamespace="http://www.motc.gov.tw/RoadNetwork" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ro="http://www.motc.gov.tw/RoadNetwork">
+<xs:schema targetNamespace="http://gis-t.motc.gov.tw/standards/schema/RoadNetwork" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ro="http://gis-t.motc.gov.tw/standards/schema/RoadNetwork">
     <xs:include schemaLocation="motcRoadNetworkElemts.xsd"/><!-- 手動加入 -->
     <xs:include schemaLocation="motcRoadNetworkRef.xsd"/><!-- 手動加入 -->
 </xs:schema>

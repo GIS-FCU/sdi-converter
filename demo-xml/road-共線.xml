@@ -6,10 +6,10 @@
     xmlns:gsr="http://www.isotc211.org/2005/gsr"
     xmlns:gts="http://www.isotc211.org/2005/gts"
     xmlns:gss="http://www.isotc211.org/2005/gss"
-    xmlns:net="http://www.motc.gov.tw/TransportNetwork"
-    xmlns:ro="http://www.motc.gov.tw/RoadNetwork"
+    xmlns:net="http://gis-t.motc.gov.tw/standards/schema/TransportNetwork"
+    xmlns:ro="http://gis-t.motc.gov.tw/standards/schema/RoadNetwork"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"    
-    xsi:schemaLocation="http://www.motc.gov.tw/RoadNetwork ../XSD/motcRoadNetworkElemts.xsd" 
+    xsi:schemaLocation="http://gis-t.motc.gov.tw/standards/schema/RoadNetwork ../XSD/motcRoadNetworkElemts.xsd" 
     roadID="road001"> 
         <net:links>
             <ro:RoadLink roadLinkID="roadlink001" />        
