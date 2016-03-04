@@ -95,6 +95,20 @@ def insertRoadLink(conn, sf, mapping):
         i = i + 1
 
 
+def checkTable(conn, tableName):
+    coursor = conn.cursor()
+    d = datetime.datetime.now()
+    newTableName = "{0}_{1}".format(tableName, d.strftime('%Y%m%d%H%M'))
+    coursor.executemany("""
+    IF EXISTS( SELECT * FROM information_schema.tables WHERE table_name = %s )
+    BEGIN
+        EXEC sp_rename %s, %s
+    END
+    """
+        , [(tableName, tableName, newTableName)])
+    conn.commit()
+
+
 def main():
     sf = shapefile.Reader("shapefiles/路網數值圖103年_西屯區道路路段")
     m = tools.create_mapping(sf.fields)
