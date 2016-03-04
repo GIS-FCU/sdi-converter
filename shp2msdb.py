@@ -9,6 +9,7 @@ from motc import tools
 import argparse
 import datetime
 import sys
+from tqdm import tqdm
 import pymssql
 import shapefile
 
@@ -58,7 +59,7 @@ CREATE TABLE [dbo].[tbRoadLink](
 
 def insertRoad(conn, sf, mapping):
     cursor = conn.cursor()
-    for rec in sf.iterRecords():
+    for rec in tqdm(sf.iterRecords()):
         d = datetime.datetime.now()
         cursor.executemany("""
         INSERT INTO tblRoad (RoadID, RoadName, RoadClass, RoadCode, RoadAliasName, CreateTime)
@@ -78,7 +79,7 @@ def insertRoadLink(conn, sf, mapping):
     cursor = conn.cursor()
     i = 0
     shapes = sf.shapes()
-    for rec in sf.iterRecords():
+    for rec in tqdm(sf.iterRecords()):
         md = datetime.datetime.fromtimestamp(int(rec[mapping['updatedate']]))
         ud = datetime.datetime.now()
         g = "LineString({} {}, {} {})".format(
