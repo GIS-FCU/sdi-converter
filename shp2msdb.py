@@ -28,7 +28,7 @@ CREATE TABLE [dbo].[tblRoad](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
-CREATE TABLE [dbo].[tblRoadLink](
+CREATE TABLE [dbo].[tbRoadLink](
         [PID] [int] IDENTITY(1,1) NOT NULL,
         [RoadLinkID] [varchar](20) NOT NULL,
         [RoadID] [varchar](30) NOT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE [dbo].[tblRoadLink](
         [BridgeTunnelName] [nvarchar](20) NULL,
         [Geometry] [geometry] NOT NULL,
         [UpdateTime] [datetime] NOT NULL,
- CONSTRAINT [PK_tblRoadLink] PRIMARY KEY CLUSTERED
+ CONSTRAINT [PK_tbRoadLink] PRIMARY KEY CLUSTERED
 (
         [PID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -79,7 +79,7 @@ def insertRoadLink(conn, sf, mapping):
             shapes[i].points[1][1]
         )
         cursor.executemany("""
-        INSERT INTO tblRoadLink (RoadLinkID, RoadID, StartRoadID, EndRoadID, StructureType, Geometry, Trival, UpdateTime)
+        INSERT INTO tbRoadLink (RoadLinkID, RoadID, StartRoadID, EndRoadID, StructureType, Geometry, Trival, UpdateTime)
             VALUES (%s, %s, %s, %s, %d, %s, %s, %s)
         """, [(
             tools.create_RoadLink(rec[mapping['roadid']], rec[mapping['roadcomnum']]),   # RoadLinkID
@@ -124,7 +124,7 @@ def main():
     cursor = conn.cursor()
 
     checkTable(conn, "tblRoad")
-    checkTable(conn, "tblRoadLink")
+    checkTable(conn, "tbRoadLink")
     cursor.execute(CREATE_TABLE)
 
     insertRoad(conn, sf, m)
