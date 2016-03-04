@@ -132,13 +132,16 @@ def checkTable(conn, tableName):
     coursor = conn.cursor()
     d = datetime.datetime.now()
     newTableName = "{0}_{1}".format(tableName, d.strftime('%Y%m%d%H%M'))
+    pkTable = "PK_{}".format(tableName)
+    newPKTable = "{}_{}".format(pkTable, d.strftime('%Y%m%d%H%M'))
     coursor.executemany("""
     IF EXISTS( SELECT * FROM information_schema.tables WHERE table_name = %s )
     BEGIN
         EXEC sp_rename %s, %s
+        EXEC sp_rename %s, %s
     END
     """
-        , [(tableName, tableName, newTableName)])
+        , [(tableName, tableName, newTableName, pkTable, newPKTable)])
     conn.commit()
 
 
