@@ -71,7 +71,7 @@ def insertRoadLink(conn, sf, mapping):
     i = 0
     shapes = sf.shapes()
     for rec in sf.iterRecords():
-        d = datetime.datetime.fromtimestamp(int(rec[mapping['updatedate']]))
+        d = datetime.datetime.now()
         g = "MULTIPOINT(({} {}), ({} {}))".format(
             shapes[i].points[0][0],
             shapes[i].points[0][1],
