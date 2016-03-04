@@ -78,25 +78,50 @@ def insertRoadLink(conn, sf, mapping):
     i = 0
     shapes = sf.shapes()
     for rec in sf.iterRecords():
-        d = datetime.datetime.now()
-        g = "MULTIPOINT(({} {}), ({} {}))".format(
+        md = datetime.datetime.fromtimestamp(int(rec[mapping['updatedate']]))
+        ud = datetime.datetime.now()
+        g = "LineString({} {}, {} {})".format(
             shapes[i].points[0][0],
             shapes[i].points[0][1],
             shapes[i].points[1][0],
             shapes[i].points[1][1]
         )
         cursor.executemany("""
-        INSERT INTO tbRoadLink (RoadLinkID, RoadID, StartRoadID, EndRoadID, StructureType, Geometry, Trival, UpdateTime)
-            VALUES (%s, %s, %s, %s, %d, %s, %s, %s)
+        INSERT INTO tbRoadLink (
+        RoadLinkID,
+        RoadName,
+        RoadClass,
+        RoadCode,
+        StartRoadID,
+        EndRoadID,
+        StructureType,
+        BridgeID,
+        TunnelID,
+        Width,
+        AliasName,
+        Address_County,
+        ModifiedDate,
+        TrafficDirection,
+        Geometry,
+        UpdateTime
+        ) VALUES (%s, %s, %s, %s, %d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """, [(
-            tools.create_RoadLink(rec[mapping['roadid']], rec[mapping['roadcomnum']]),   # RoadLinkID
-            rec[mapping['roadid']][:30],      # RoadID
-            rec[mapping['fnode']][:20],       # StartRoadID
-            rec[mapping['tnode']][:20],       # EndRoadID
-            rec[mapping['roadstruct']],       # StructureType
-            g,                                # Geometry
-            0,                                # Trival
-            d.strftime('%Y-%m-%d %H:%M:%S'),  # UpdateTime
+            tools.create_RoadLink(rec[mapping['roadid']], rec[mapping['roadcomnum']]), # RoadLinkID
+            rec[mapping['roadname']][:20],                                             # RoadName
+            rec[mapping['roadtype']][:5] ,                                             # RoadClass
+            rec[mapping['roadcode']][:10].decode('utf-8') ,                            # RoadCode
+            rec[mapping['fnode']][:20],                                                # StartRoadID
+            rec[mapping['tnode']][:20],                                                # EndRoadID
+            rec[mapping['roadstruct']],                                                # StructureType
+            rec[mapping['bridgeid']][:20].decode('utf-8'),                             # BridgeID
+            rec[mapping['tunnelid']][:20].decode('utf-8') ,                            # TunnelID
+            rec[mapping['width']],                                                     # Width
+            rec[mapping['rdaliasn']][:20] if 'rdaliasn' in mapping else '',            # AliasName
+            'B',                                                                       # Address_County
+            md.strftime('%Y-%m-%d %H:%M:%S'),                                          # ModifiedDate
+            rec[mapping['dir']],                                                       # TrafficDirection
+            g,                                                                         # Geometry
+            ud.strftime('%Y-%m-%d %H:%M:%S'),                                          # UpdateTime
             )])
         conn.commit()
         i = i + 1
