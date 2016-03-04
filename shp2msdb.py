@@ -123,6 +123,8 @@ def main():
     conn = pymssql.connect(args.server, args.username, args.password, args.database)
     cursor = conn.cursor()
 
+    checkTable(conn, "tblRoad")
+    checkTable(conn, "tblRoadLink")
     cursor.execute(CREATE_TABLE)
 
     insertRoad(conn, sf, m)
