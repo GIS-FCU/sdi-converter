@@ -1,2 +1,4 @@
 lxml==3.5.0
 pyshp==1.2.3
+pymsql==2.1.2
+tqdm==3.8.0
