@@ -6,8 +6,9 @@ __version__ = '0.1.0'
 
 from os import getenv
 from motc import tools
-import datetime
 import argparse
+import datetime
+import sys
 import pymssql
 import shapefile
 
@@ -142,7 +143,9 @@ def checkTable(conn, tableName):
 
 
 def main():
-    sf = shapefile.Reader("shapefiles/路網數值圖103年_西屯區道路路段")
+    shapefileName = "shapefiles/路網數值圖103年_西屯區道路路段"
+    sys.stdout.write("Start read shapefile {}\n".format(shapefileName))
+    sf = shapefile.Reader(shapefileName)
     m = tools.create_mapping(sf.fields)
 
     parser = argparse.ArgumentParser()
@@ -153,16 +156,23 @@ def main():
     args = parser.parse_args()
 
     conn = pymssql.connect(args.server, args.username, args.password, args.database)
+    sys.stdout.write("Start connect to server\n")
     cursor = conn.cursor()
 
+    sys.stdout.write("Check table is existed\n")
     checkTable(conn, "tblRoad")
     checkTable(conn, "tbRoadLink")
+
+    sys.stdout.write("Create table\n")
     cursor.execute(CREATE_TABLE)
 
+    sys.stdout.write("Start insert Road\n")
     insertRoad(conn, sf, m)
+
+    sys.stdout.write("Start insert RoadLink\n")
     insertRoadLink(conn, sf, m)
 
-    # Finish all
+    sys.stdout.write("Finish all\n")
     conn.close()
 
 if __name__ == '__main__':
