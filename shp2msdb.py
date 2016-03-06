@@ -4,7 +4,6 @@
 __author__ = 'Superbil'
 __version__ = '0.2.0'
 
-from os import getenv
 from motc import tools
 import argparse
 import datetime
