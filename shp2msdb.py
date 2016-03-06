@@ -109,13 +109,13 @@ def insertRoadLink(conn, sf, mapping):
         """, [(
             tools.create_RoadLink(rec[mapping['roadid']], rec[mapping['roadcomnum']]), # RoadLinkID
             rec[mapping['roadname']][:20],                                             # RoadName
-            rec[mapping['roadtype']][:5] ,                                             # RoadClass
-            rec[mapping['roadcode']][:10].decode('utf-8') ,                            # RoadCode
+            rec[mapping['roadtype']][:5],                                              # RoadClass
+            rec[mapping['roadcode']][:10],                                             # RoadCode
             rec[mapping['fnode']][:20],                                                # StartRoadID
             rec[mapping['tnode']][:20],                                                # EndRoadID
             rec[mapping['roadstruct']],                                                # StructureType
-            rec[mapping['bridgeid']][:20].decode('utf-8'),                             # BridgeID
-            rec[mapping['tunnelid']][:20].decode('utf-8') ,                            # TunnelID
+            rec[mapping['bridgeid']][:20],                                             # BridgeID
+            rec[mapping['tunnelid']][:20],                                             # TunnelID
             rec[mapping['width']],                                                     # Width
             rec[mapping['rdaliasn']][:20] if 'rdaliasn' in mapping else '',            # AliasName
             'B',                                                                       # Address_County
@@ -140,8 +140,7 @@ def checkTable(conn, tableName):
         EXEC sp_rename %s, %s
         EXEC sp_rename %s, %s
     END
-    """
-        , [(tableName, tableName, newTableName, pkTable, newPKTable)])
+    """, [(tableName, tableName, newTableName, pkTable, newPKTable)])
     conn.commit()
 
 
