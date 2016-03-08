@@ -3,16 +3,56 @@
 	<xs:element name="Address" type="net:Address"/>
 	<xs:complexType name="Address">
 		<xs:sequence>
-			<xs:element name="aly" type="xs:string" minOccurs="0" maxOccurs="1"/>
-			<xs:element name="county" type="xs:string" minOccurs="1" maxOccurs="1"/>
-			<xs:element name="district" type="xs:string" minOccurs="0" maxOccurs="1"/>
-			<xs:element name="doorNumber" type="xs:string" minOccurs="0" maxOccurs="1"/>
-			<xs:element name="doorPlate" type="xs:string" minOccurs="0" maxOccurs="1"/>
-			<xs:element name="lane" type="xs:string" minOccurs="0" maxOccurs="1"/>
-			<xs:element name="neighborhood" type="xs:string" minOccurs="0" maxOccurs="1"/>
-			<xs:element name="roadname" type="xs:string" minOccurs="1" maxOccurs="1"/>
-			<xs:element name="town" type="xs:string" minOccurs="0" maxOccurs="1"/>
-			<xs:element name="village" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="county" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>省市縣市</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="district" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>地區</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="town" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>鄉鎮市區</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="village" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>村里</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="neighborhood" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>鄰</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="roadname" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>路、街名</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="lane" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>巷</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="aly" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>弄</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="doorPlate" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>門牌</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="doorNumber" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>門牌號</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 </xs:schema>

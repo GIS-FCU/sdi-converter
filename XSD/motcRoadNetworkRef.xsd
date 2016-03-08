@@ -5,7 +5,13 @@
 	<xs:include schemaLocation="motcRoadNetworkElemts.xsd"/>
 	<xs:element name="NetworkReference" type="ro:NetworkReference"/>
 	<xs:complexType name="NetworkReference">
-		<xs:sequence/>
+		<xs:sequence>
+			<xs:element name="direction" type="gml:DirectionPropertyType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>參照所在道路之方向，如：國1南下，其值為S；台12東行，其值為E。</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="RoadLinearReference" type="ro:RoadLinearReference" substitutionGroup="ro:NetworkReference"/>
 	<xs:complexType name="RoadLinearReference">
@@ -30,6 +36,11 @@
 							<xs:documentation>道路線型參照之起始點，適用於起始點有坐標之情況。</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="fromRoadNode" type="ro:RoadNode" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>道路線型參照之起始路段節點，適用於已知路段節點資訊之情況。</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element name="onRoadLink" type="ro:RoadLink" minOccurs="1" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>點參照之參考路段。</xs:documentation>
@@ -50,6 +61,11 @@
 							<xs:documentation>道路線型參照之終止點，適用於終止點有坐標之情況。</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="toRoadNode" type="ro:RoadNode" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>道路線型參照之終止路段節點，適用於已知路段節點資訊之情況。</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -60,12 +76,13 @@
 			<xs:documentation>路徑(Route)或道路沿線用以標示距起始點距離的標識物(通常有固定常度之間隔)。</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="mileage" type="xs:int" minOccurs="1" maxOccurs="1">
+			<!--<xs:element name="mileage" type="xs:int" minOccurs="0" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>里程數。</xs:documentation>
 				</xs:annotation>
-			</xs:element>
-			<xs:element name="postTag" type="xs:string" minOccurs="1" maxOccurs="1">
+			</xs:element>-->
+			<xs:element name="postTag" type="ro:PostTagType" minOccurs="1" maxOccurs="1">
+				
 				<xs:annotation>
 					<xs:documentation>道路里程標識名稱，如：16K+500，通常可對應里程數(mileage)。</xs:documentation>
 				</xs:annotation>
@@ -73,6 +90,11 @@
 			<xs:element name="alongRoute" type="ro:Road" minOccurs="1" maxOccurs="1"/>
 		</xs:sequence>
 	</xs:complexType>
+	<xs:simpleType name="PostTagType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{1,3}K\+[0-9]{3}"></xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
 	<xs:element name="RoadPointReference" type="ro:RoadPointReference" substitutionGroup="ro:NetworkReference"/>
 	<xs:complexType name="RoadPointReference">
 		<xs:annotation>
@@ -106,12 +128,7 @@
 						<xs:annotation>
 							<xs:documentation>點參照之參考路段。</xs:documentation>
 						</xs:annotation>
-					</xs:element>
-					<xs:element name="roadLinkDirection" type="xs:string" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>點參照位於參考路段的方向，正(+)為與參考路段數化方向同向，負(-)為反向。</xs:documentation>
-						</xs:annotation>
-					</xs:element>
+					</xs:element>					
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>

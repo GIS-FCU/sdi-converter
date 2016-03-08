@@ -9,13 +9,17 @@
  http://gis-t.motc.gov.tw/standards/schema/RoadNetwork ../XSD/motcRoadNetworkRef.xsd"
   eventID="201601260002">
   <locationRef>
-    <ro:RoadPointReference>
-      <atAddress>
-        <county>台中市</county>
-        <district>西屯區</district>
-        <roadname>西屯路三段</roadname>        
-        <doorNumber>129</doorNumber>
-      </atAddress>
+    <ro:RoadPointReference>      
+      <onRoadLink roadLinkID="B-4U-050526">
+        <ro:affiliatedRoads>
+          <ro:Road roadID="#">
+            <roadName>西屯路三段</roadName>
+          </ro:Road>
+          <ro:Road roadID="#">
+            <roadName>安和路</roadName>
+          </ro:Road>
+        </ro:affiliatedRoads>
+      </onRoadLink>    
     </ro:RoadPointReference>
   </locationRef>
   <eventStart>2016-01-26T10:45:00</eventStart>

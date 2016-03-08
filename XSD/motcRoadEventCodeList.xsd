@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema targetNamespace="http://gis-t.motc.gov.tw/standards/schema/RoadEvent" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema targetNamespace="http://gis-t.motc.gov.tw/standards/schema/RoadEvent" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:roevt="http://gis-t.motc.gov.tw/standards/schema/RoadEvent">
 	<xs:simpleType name="BlockedLaneTypeValue">
 		<xs:annotation>
 			<xs:documentation>阻斷車道代碼</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
-			<xs:enumeration value="all">
+			<xs:enumeration value="all">				
 				<xs:annotation>
 					<xs:documentation>全線</xs:documentation>
-				</xs:annotation>
+				</xs:annotation>				
 			</xs:enumeration>
 			<xs:enumeration value="centerline">
 				<xs:annotation>
@@ -261,7 +261,149 @@
 				<xs:annotation>
 					<xs:documentation>交通管制</xs:documentation>
 				</xs:annotation>
+			</xs:enumeration>			
+		</xs:restriction>		
+	</xs:simpleType>
+	<xs:simpleType name="EventTypeSubValue">
+		<xs:annotation>
+			<xs:documentation>事件次類別代碼</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">			
+			<xs:enumeration value="accident:crash">
+				<xs:annotation><xs:documentation>車禍。包含多輛車、大貨車、巴士等車輛追撞、對撞、擦撞等事故。</xs:documentation></xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="accident:turnOver">
+				<xs:annotation><xs:documentation>翻車。車輛行駛間翻覆。</xs:documentation></xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="accident:carOnFire">
+				<xs:annotation><xs:documentation>火燒車。車輛行駛間、停放路肩起火影響交通。</xs:documentation></xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="accident:railway">
+				<xs:annotation><xs:documentation>鐵路意外事故。如火車互撞影響交通、行人/車輛闖越平交道導致事故。</xs:documentation></xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="accident:hazardousMaterial">
+				<xs:annotation><xs:documentation>危險原物料的意外事故。包含燃料外洩、化學物外洩、石油外洩。。</xs:documentation></xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="accident:fire">
+				<xs:annotation><xs:documentation>火警。車道周圍建築物起火影響視線，不良於車輛行駛。</xs:documentation></xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="accident:fallout">
+				<xs:annotation><xs:documentation>散落物。車輛行駛間掉落物。包含乘載物品、車輛零件、動物屍體等影響交通之物品。</xs:documentation></xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="accident:breakDown">
+				<xs:annotation><xs:documentation>車輛拋錨。行駛間突然熄火之故障車。</xs:documentation></xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="accident:doubleParking">
+				<xs:annotation><xs:documentation>併排停車。路旁併排停車至快/慢車道上。</xs:documentation></xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="congestion:e">
+				<xs:annotation><xs:documentation>車多擁擠。無其他事件因素導致行駛速率緩慢，且易受前方車流影響，意指道路服務水準E級。</xs:documentation></xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="congestion:f">
+				<xs:annotation><xs:documentation>大排長龍。無其他事件因素導致行車停停走走，甚至是完全動彈不得的塞車，意指道路服務水準F級。</xs:documentation></xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="construction:road">
+				<xs:annotation><xs:documentation>道路施工。車道鋪面修整。</xs:documentation></xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="construction:ramp">
+				<xs:annotation><xs:documentation>匝道施工。如台61線布袋二交流道施工。</xs:documentation></xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="construction:longTerm">
+				<xs:annotation><xs:documentation>長期施工。週期性固定施工。</xs:documentation></xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="construction:shoulder">
+				<xs:annotation><xs:documentation>路肩施工。如台62線東行7.7K~7.9K路段路肩施工。</xs:documentation></xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="construction:moving">
+				<xs:annotation><xs:documentation>移動性施工。移動施工作業</xs:documentation></xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="construction:clean">
+				<xs:annotation><xs:documentation>路面清掃。固定性清掃工作、清掃車、灑水車停放因而影響車流。</xs:documentation></xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="trafficControl:closeLine">
+				<xs:annotation><xs:documentation>車道封閉。封閉及限制性的交通管制。</xs:documentation></xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="trafficControl:closeBridge">
+				<xs:annotation><xs:documentation>橋樑封閉。封閉及限制性的交通管制。</xs:documentation></xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="trafficControl:closeTunnel">
+				<xs:annotation><xs:documentation>隧道封閉。封閉及限制性的交通管制。</xs:documentation></xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="trafficControl:periodicallyClose">
+				<xs:annotation><xs:documentation>週期性道路封閉。封閉及限制性的交通管制。</xs:documentation></xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="trafficControl:closeInterchange">
+				<xs:annotation><xs:documentation>交流道封閉。封閉及限制性的交通管制。</xs:documentation></xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="trafficControl:closeTransportationLink">
+				<xs:annotation><xs:documentation>聯絡道路封閉。封閉及限制性的交通管制。</xs:documentation></xs:annotation>
+			</xs:enumeration>			
+			<xs:enumeration value="disaster:wind">
+				<xs:annotation><xs:documentation>強風。預測或觀測到平均風力6級，陣風8級以上。</xs:documentation></xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="disaster:rain">
+				<xs:annotation><xs:documentation>豪雨。大雨能見度低。</xs:documentation></xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="disaster:fog">
+				<xs:annotation><xs:documentation>濃霧。預測或觀測到陸地能見度不足200公尺，或港區航道能見度不足500公尺時發布。</xs:documentation></xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="disaster:stone">
+				<xs:annotation><xs:documentation>落石。山邊之落石影響至車道上之車輛行駛通行。</xs:documentation></xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="disaster:landslide">
+				<xs:annotation><xs:documentation>山崩。因大雨、地震、地基鬆動等影響導致車道阻斷。</xs:documentation></xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="disaster:earthquake">
+				<xs:annotation><xs:documentation>地震。依中央氣象局發布地震警報為主。</xs:documentation></xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="disaster:flood">
+				<xs:annotation><xs:documentation>淹水。因豪大雨、颱風導致路段淹水，導致車輛窒礙難行。</xs:documentation></xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="disaster:collapse">
+				<xs:annotation><xs:documentation>坍方。因大雨、地震、地基鬆動等影響導致車道阻斷。</xs:documentation></xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="surfaceDamage:hole">
+				<xs:annotation><xs:documentation>路面有坑洞。路面上之坑洞影響車輛行駛。</xs:documentation></xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="surfaceDamage:standingWater">
+				<xs:annotation><xs:documentation>積水。路面積水影響車輛行駛。</xs:documentation></xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="facilityMalfunction:signal">
+				<xs:annotation><xs:documentation>交通號誌故障。交通號誌故障影響車流。</xs:documentation></xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="facilityMalfunction:lamp">
+				<xs:annotation><xs:documentation>路燈故障。路燈故障影響交通視線，影響交通視線。</xs:documentation></xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="other:slopeFire">
+				<xs:annotation><xs:documentation>邊坡草皮燃燒。邊坡草皮燃燒影響交通視線。</xs:documentation></xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="other:caution">
+				<xs:annotation><xs:documentation>小心通行。非能歸類於以上任何次類別時，但路況可能影響行車駕駛。</xs:documentation></xs:annotation>
+			</xs:enumeration>			
+			<xs:enumeration value="other:severeEvent">
+				<xs:annotation><xs:documentation>嚴重事件。如隧道演習、隧道煙塵、CH4、NO及CO超限、隧道超溫、機車誤闖國道、逆行車輛、恐怖攻擊等</xs:documentation></xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EventTypeValue">
+		<xs:union memberTypes="roevt:EventTypeMajorValue roevt:EventTypeSubValue"></xs:union>
+		<!--Deprecated: Sub type as attribute -->
+		<!--<xs:simpleContent>			
+			<xs:extension base="roevt:EventTypeMajorValue">				
+				<xs:attribute name="subtype">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="accident:crash">
+								<xs:annotation>
+									<xs:documentation>車禍</xs:documentation>
+								</xs:annotation>
+							</xs:enumeration>
+							<xs:pattern value="accident:\S.*"></xs:pattern>
+							<xs:pattern value="congestion:\S.*"></xs:pattern>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>-->
 	</xs:simpleType>
 </xs:schema>

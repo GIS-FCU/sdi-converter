@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ro:RoadNode xmlns:gml="http://www.opengis.net/gml/3.2"        
+    xmlns:ro="http://gis-t.motc.gov.tw/standards/schema/RoadNetwork"
+    xmlns:net="http://gis-t.motc.gov.tw/standards/schema/TransportNetwork" 
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://gis-t.motc.gov.tw/standards/schema/RoadNetwork ../XSD/motcRoadNetwork.xsd"
+    roadNodeID="S6F1ALKMV " >    
+    <geometry>
+        <gml:Point gml:id="point1" srsName="EPSG:3826">
+            <gml:pos>212011 2675517</gml:pos>
+        </gml:Point>
+    </geometry>
+    <modifiedDate>201601</modifiedDate>        
+</ro:RoadNode>

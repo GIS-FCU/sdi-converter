@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ro:RoadPointReference xmlns:gml="http://www.opengis.net/gml/3.2"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:net="http://gis-t.motc.gov.tw/standards/schema/TransportNetwork"
+    xmlns:ro="http://gis-t.motc.gov.tw/standards/schema/RoadNetwork"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://gis-t.motc.gov.tw/standards/schema/RoadNetwork ../XSD/motcRoadNetwork.xsd">    
+    <direction>
+        <gml:CompassPoint>N</gml:CompassPoint>
+    </direction>
+    <atAddress>
+        <county>臺中市</county>
+        <town>西屯區</town>
+        <roadname>安和路</roadname>        
+        <doorNumber>25號</doorNumber>
+    </atAddress>
+    <atPoint>
+        <gml:Point gml:id="ID000">
+            <gml:pos>211974 2675432</gml:pos>
+        </gml:Point>
+    </atPoint>
+    <nearRoadNode roadNodeID="S6EX9LKJ1"></nearRoadNode>
+    <onRoadLink roadLinkID="B-4U-050526"/>
+</ro:RoadPointReference>

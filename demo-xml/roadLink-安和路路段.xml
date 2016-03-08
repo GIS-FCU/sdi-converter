@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ro:RoadLink xmlns:gml="http://www.opengis.net/gml/3.2"        
+    xmlns:ro="http://gis-t.motc.gov.tw/standards/schema/RoadNetwork"
+    xmlns:net="http://gis-t.motc.gov.tw/standards/schema/TransportNetwork" 
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://gis-t.motc.gov.tw/standards/schema/RoadNetwork ../XSD/motcRoadNetwork.xsd"
+    roadLinkID="B-4U-050526" >    
+    <geometry>
+        <gml:LineString gml:id="line" srsName="EPSG:3826">
+            <gml:posList>212011 2675517 211945 2675393</gml:posList>
+        </gml:LineString>           
+    </geometry>
+    <modifiedDate>201601</modifiedDate> 
+    <!--通行方向 -->
+    <trafficDirection>oneway</trafficDirection>
+    <!-- 線段起始點 -->    
+    <startNode nodeID="S6EX9LKJ1" />
+    <!-- 線段結束點 -->
+    <endNode nodeID="S6F1ALKMV" />    
+    <!-- 道路結構 -->
+    <structureType>ground</structureType>
+    <!--路寬 -->
+    <width>6</width>
+    <!--所屬道路 -->
+    <ro:affiliatedRoads>
+        <ro:Road roadID="4-01250">
+            <roadClass>4</roadClass>
+            <roadCode>125</roadCode>
+            <roadName>縣125</roadName>
+        </ro:Road>
+        <ro:Road roadID="6-00489">
+            <roadClass>6</roadClass>
+            <roadCode/>
+            <roadName>安和路</roadName>
+        </ro:Road>
+    </ro:affiliatedRoads>           
+</ro:RoadLink>

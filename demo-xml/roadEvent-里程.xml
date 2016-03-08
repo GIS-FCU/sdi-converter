@@ -1,36 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<roevt:RoadEvent xmlns:gml="http://www.opengis.net/gml/3.2"
- xmlns:gmd="http://www.isotc211.org/2005/gmd"
+<roevt:RoadEvent 
+   xmlns:gml="http://www.opengis.net/gml/3.2"
  xmlns:xlink="http://www.w3.org/1999/xlink"
- xmlns:gco="http://www.isotc211.org/2005/gco"
  xmlns:ro="http://gis-t.motc.gov.tw/standards/schema/RoadNetwork"
  xmlns:net="http://gis-t.motc.gov.tw/standards/schema/TransportNetwork"
- xmlns:gsr="http://www.isotc211.org/2005/gsr"
- xmlns:gss="http://www.isotc211.org/2005/gss"
- xmlns:gts="http://www.isotc211.org/2005/gts"
- xmlns:roevt="http://gis-t.motc.gov.tw/standards/schema/RoadEvent"
+ xmlns:roevt="http://gis-t.motc.gov.tw/standards/schema/RoadEvent" 
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xsi:schemaLocation="http://gis-t.motc.gov.tw/standards/schema/RoadEvent ../XSD/motcRoadEvent.xsd
- http://gis-t.motc.gov.tw/standards/schema/RoadNetwork ../XSD/motcRoadNetworkRef.xsd">   
+ http://gis-t.motc.gov.tw/standards/schema/RoadNetwork ../XSD/motcRoadNetworkRef.xsd"
+ eventID="201601260003">
+   <locationRef>
+      <ro:RoadPointReference>                  
+         <atMileage>
+            <postTag>009K+500</postTag>
+            <alongRoute roadID="road001" />
+         </atMileage>
+      </ro:RoadPointReference>
+   </locationRef>
+   <eventStart>2016-01-26T10:45:00</eventStart>
+   <updateTime>2016-01-26T10:45:00</updateTime>
+   <description>event for demo</description>
    <blockedLane>all</blockedLane>
    <district>A</district>
-   <eventType>accident</eventType>
+   <eventType>accident:crash</eventType>
    <impact>fullyBlocked</impact>
    <period>periodical</period>
    <range>lessThan10KM</range>
    <source>cpa</source>
-   <sourceAuthority>A</sourceAuthority>
-   <status>duplicate</status>   
-   <locationRef>
-    <ro:RoadPointReference>
-       <atMileage>
-          <mileage>9500</mileage>
-          <postTag>009K+500</postTag>
-          <alongRoute roadID="road001" />
-       </atMileage>
-    </ro:RoadPointReference>
-   </locationRef>
-   <eventStart>2016-01-26T10:45:00</eventStart>
-   <updateTime>2016-01-26T10:45:00</updateTime>
-   <description>event for demo</description>   
+   <sourceAuthority>TCHC</sourceAuthority>
+   <status>duplicate</status>         
 </roevt:RoadEvent>

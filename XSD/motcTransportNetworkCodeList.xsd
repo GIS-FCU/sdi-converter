@@ -117,6 +117,129 @@
 			</xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:simpleType name="CountyAuthorityValue">
+		<xs:annotation>
+			<xs:documentation>縣市政府單位代碼</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="TPEC">
+				<xs:annotation>
+					<xs:documentation>臺北市</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TCHC">
+				<xs:annotation>
+					<xs:documentation>臺中市</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="KLU">
+				<xs:annotation>
+					<xs:documentation>基隆市</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TNAC">
+				<xs:annotation>
+					<xs:documentation>台南市</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="KHSC">
+				<xs:annotation>
+					<xs:documentation>高雄市</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TPEH">
+				<xs:annotation>
+					<xs:documentation>新北市</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ILN">
+				<xs:annotation>
+					<xs:documentation>宜蘭縣</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TYU">
+				<xs:annotation>
+					<xs:documentation>桃園市</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CIAC">
+				<xs:annotation>
+					<xs:documentation>嘉義市</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="HCHH">
+				<xs:annotation>
+					<xs:documentation>新竹縣</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MLI">
+				<xs:annotation>
+					<xs:documentation>苗栗縣</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NTO">
+				<xs:annotation>
+					<xs:documentation>南投縣</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CGH">
+				<xs:annotation>
+					<xs:documentation>彰化縣</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="HCHC">
+				<xs:annotation>
+					<xs:documentation>新竹市</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="YLI">
+				<xs:annotation>
+					<xs:documentation>雲林縣</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CIAH">
+				<xs:annotation>
+					<xs:documentation>嘉義縣</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PTN">
+				<xs:annotation>
+					<xs:documentation>屏東縣</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="HLN">
+				<xs:annotation>
+					<xs:documentation>花蓮縣</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TTN">
+				<xs:annotation>
+					<xs:documentation>臺東縣</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="KIM">
+				<xs:annotation>
+					<xs:documentation>金門縣</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PGH">
+				<xs:annotation>
+					<xs:documentation>澎湖縣</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LIC">
+				<xs:annotation>
+					<xs:documentation>連江縣</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TWN">
+				<xs:annotation>
+					<xs:documentation>全臺</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	
 	<xs:simpleType name="LinkDirectionValue">
 		<xs:annotation>
 			<xs:documentation>通行方向代碼，可為：單向通行(與數化方向同向或反向，預設為同向)、雙向通行。</xs:documentation>

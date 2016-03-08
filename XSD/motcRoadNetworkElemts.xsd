@@ -36,13 +36,21 @@
 					<xs:element name="width" type="xs:int" minOccurs="0" maxOccurs="1"/>
 					<xs:element ref="ro:affiliatedRoads" minOccurs="0"/><!-- 手動修改 -->
 				</xs:sequence>
-				<xs:attribute name="bridgeID" use="optional" type="xs:string"/>
+				<xs:attribute name="bridgeID" use="optional" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>橋樑代碼</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
 				<xs:attribute name="roadLinkID" use="required" type="xs:string">
 					<xs:annotation>
 						<xs:documentation>路段唯一識別碼。</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute name="tunnelID" use="optional" type="xs:string"/>
+				<xs:attribute name="tunnelID" use="optional" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>隧道代碼</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>

@@ -34,13 +34,16 @@
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
+		<xs:attribute name="nodeID" type="xs:string" use="optional">
+			<xs:annotation><xs:documentation>節點編號</xs:documentation></xs:annotation>
+		</xs:attribute>
 	</xs:complexType>
 	<xs:element name="Link" type="net:Link"/>
 	<xs:complexType name="Link">
 		<xs:annotation>
 			<xs:documentation>連接兩節點(Node)之1維物件，如：道路網路的路段或軌道網路的軌道等。</xs:documentation>
 		</xs:annotation>
-		<xs:sequence>
+		<xs:sequence minOccurs="0" >
 			<xs:element name="geometry" type="gml:CurvePropertyType" minOccurs="0" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>線段之1維(1-dimension)幾何，可衍生其線形、起迄點、長度等資訊。</xs:documentation>
@@ -55,5 +58,8 @@
 			<xs:element name="startNode" type="net:Node" minOccurs="0" maxOccurs="1"/>
 			<xs:element name="endNode" type="net:Node" minOccurs="0" maxOccurs="1"/>
 		</xs:sequence>
+		<xs:attribute name="linkID" type="xs:string" use="optional">
+			<xs:annotation><xs:documentation>線段編號</xs:documentation></xs:annotation>
+		</xs:attribute>
 	</xs:complexType>
 </xs:schema>
