@@ -2,12 +2,13 @@
 # -*- coding: utf-8 -*-
 
 __author__ = 'Superbil'
-__version__ = '0.1.0'
+__version__ = '0.2.1'
 
-from os import getenv
 from motc import tools
-import datetime
 import argparse
+import datetime
+import sys
+from tqdm import tqdm
 import pymssql
 import shapefile
 
@@ -28,19 +29,26 @@ CREATE TABLE [dbo].[tblRoad](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
-CREATE TABLE [dbo].[tblRoadLink](
+CREATE TABLE [dbo].[tbRoadLink](
         [PID] [int] IDENTITY(1,1) NOT NULL,
         [RoadLinkID] [varchar](20) NOT NULL,
-        [RoadID] [varchar](30) NOT NULL,
+        [RoadName] [nvarchar](20) NOT NULL,
+        [RoadClass] [varchar](5) NOT NULL,
+        [RoadCode] [varchar](10) NULL,
         [StartRoadID] [varchar](20) NULL,
         [EndRoadID] [varchar](20) NULL,
-        [Trival] [bit] NOT NULL,
         [StructureType] [int] NOT NULL,
-        [FormOfRoad] [varchar](20) NULL,
-        [BridgeTunnelName] [nvarchar](20) NULL,
+        [BridgeID] [nvarchar](20) NULL,
+        [TunnelID] [nvarchar](20) NULL,
+        [Width] [nvarchar](20) NULL,
+        [AliasName] [nvarchar](20) NULL,
+        [Address_County] [nvarchar](10) NULL,
+        [Address_RoadName] [nvarchar](20) NULL,
+        [ModifiedDate] [datetime] NOT NULL,
+        [TrafficDirection] [nvarchar](10) NULL,
         [Geometry] [geometry] NOT NULL,
         [UpdateTime] [datetime] NOT NULL,
- CONSTRAINT [PK_tblRoadLink] PRIMARY KEY CLUSTERED
+ CONSTRAINT [PK_tbRoadLink] PRIMARY KEY CLUSTERED
 (
         [PID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -50,7 +58,7 @@ CREATE TABLE [dbo].[tblRoadLink](
 
 def insertRoad(conn, sf, mapping):
     cursor = conn.cursor()
-    for rec in sf.iterRecords():
+    for rec in tqdm(sf.iterRecords(), total=len(sf.records())):
         d = datetime.datetime.now()
         cursor.executemany("""
         INSERT INTO tblRoad (RoadID, RoadName, RoadClass, RoadCode, RoadAliasName, CreateTime)
@@ -70,33 +78,76 @@ def insertRoadLink(conn, sf, mapping):
     cursor = conn.cursor()
     i = 0
     shapes = sf.shapes()
-    for rec in sf.iterRecords():
-        d = datetime.datetime.fromtimestamp(int(rec[mapping['updatedate']]))
-        g = "MULTIPOINT(({} {}), ({} {}))".format(
+    for rec in tqdm(sf.iterRecords(), total=len(sf.records())):
+        md = datetime.datetime.fromtimestamp(int(rec[mapping['updatedate']]))
+        ud = datetime.datetime.now()
+        g = "LineString({} {}, {} {})".format(
             shapes[i].points[0][0],
             shapes[i].points[0][1],
             shapes[i].points[1][0],
             shapes[i].points[1][1]
         )
         cursor.executemany("""
-        INSERT INTO tblRoadLink (RoadLinkID, RoadID, StartRoadID, EndRoadID, StructureType, Geometry, Trival, UpdateTime)
-            VALUES (%s, %s, %s, %s, %d, %s, %s, %s)
+        INSERT INTO tbRoadLink (
+        RoadLinkID,
+        RoadName,
+        RoadClass,
+        RoadCode,
+        StartRoadID,
+        EndRoadID,
+        StructureType,
+        BridgeID,
+        TunnelID,
+        Width,
+        AliasName,
+        Address_County,
+        ModifiedDate,
+        TrafficDirection,
+        Geometry,
+        UpdateTime
+        ) VALUES (%s, %s, %s, %s, %d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """, [(
-            tools.create_RoadLink(rec[mapping['roadid']], rec[mapping['roadcomnum']]),   # RoadLinkID
-            rec[mapping['roadid']][:30],      # RoadID
-            rec[mapping['fnode']][:20],       # StartRoadID
-            rec[mapping['tnode']][:20],       # EndRoadID
-            rec[mapping['roadstruct']],       # StructureType
-            g,                                # Geometry
-            0,                                # Trival
-            d.strftime('%Y-%m-%d %H:%M:%S'),  # UpdateTime
+            tools.create_RoadLink(rec[mapping['roadid']], rec[mapping['roadcomnum']]), # RoadLinkID
+            rec[mapping['roadname']][:20],                                             # RoadName
+            rec[mapping['roadtype']][:5],                                              # RoadClass
+            rec[mapping['roadcode']][:10],                                             # RoadCode
+            rec[mapping['fnode']][:20],                                                # StartRoadID
+            rec[mapping['tnode']][:20],                                                # EndRoadID
+            rec[mapping['roadstruct']],                                                # StructureType
+            rec[mapping['bridgeid']][:20],                                             # BridgeID
+            rec[mapping['tunnelid']][:20],                                             # TunnelID
+            rec[mapping['width']],                                                     # Width
+            rec[mapping['rdaliasn']][:20] if 'rdaliasn' in mapping else '',            # AliasName
+            'B',                                                                       # Address_County
+            md.strftime('%Y-%m-%d %H:%M:%S'),                                          # ModifiedDate
+            rec[mapping['dir']],                                                       # TrafficDirection
+            g,                                                                         # Geometry
+            ud.strftime('%Y-%m-%d %H:%M:%S'),                                          # UpdateTime
             )])
         conn.commit()
         i = i + 1
 
 
+def checkTable(conn, tableName):
+    coursor = conn.cursor()
+    d = datetime.datetime.now()
+    newTableName = "{0}_{1}".format(tableName, d.strftime('%Y%m%d%H%M'))
+    pkTable = "PK_{}".format(tableName)
+    newPKTable = "{}_{}".format(pkTable, d.strftime('%Y%m%d%H%M'))
+    coursor.executemany("""
+    IF EXISTS( SELECT * FROM information_schema.tables WHERE table_name = %s )
+    BEGIN
+        EXEC sp_rename %s, %s
+        EXEC sp_rename %s, %s
+    END
+    """, [(tableName, tableName, newTableName, pkTable, newPKTable)])
+    conn.commit()
+
+
 def main():
-    sf = shapefile.Reader("shapefiles/路網數值圖103年_西屯區道路路段")
+    shapefileName = "shapefiles/路網數值圖103年_西屯區道路路段"
+    sys.stdout.write("Start read shapefile {}\n".format(shapefileName))
+    sf = shapefile.Reader(shapefileName)
     m = tools.create_mapping(sf.fields)
 
     parser = argparse.ArgumentParser()
@@ -107,14 +158,23 @@ def main():
     args = parser.parse_args()
 
     conn = pymssql.connect(args.server, args.username, args.password, args.database)
+    sys.stdout.write("Start connect to server\n")
     cursor = conn.cursor()
 
+    sys.stdout.write("Check table is existed\n")
+    checkTable(conn, "tblRoad")
+    checkTable(conn, "tbRoadLink")
+
+    sys.stdout.write("Create table\n")
     cursor.execute(CREATE_TABLE)
 
+    sys.stdout.write("Start insert Road\n")
     insertRoad(conn, sf, m)
+
+    sys.stdout.write("Start insert RoadLink\n")
     insertRoadLink(conn, sf, m)
 
-    # Finish all
+    sys.stdout.write("Finish all\n")
     conn.close()
 
 if __name__ == '__main__':
