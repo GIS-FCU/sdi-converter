@@ -162,14 +162,14 @@ def main():
     cursor = conn.cursor()
 
     sys.stdout.write("Check table is existed\n")
-    checkTable(conn, "tblRoad")
+    # checkTable(conn, "tblRoad")
     checkTable(conn, "tbRoadLink")
 
     sys.stdout.write("Create table\n")
     cursor.execute(CREATE_TABLE)
 
-    sys.stdout.write("Start insert Road\n")
-    insertRoad(conn, sf, m)
+    # sys.stdout.write("Start insert Road\n")
+    # insertRoad(conn, sf, m)
 
     sys.stdout.write("Start insert RoadLink\n")
     insertRoadLink(conn, sf, m)
