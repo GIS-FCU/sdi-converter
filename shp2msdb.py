@@ -107,22 +107,22 @@ def insertRoadLink(conn, sf, mapping):
         UpdateTime
         ) VALUES (%s, %s, %s, %s, %d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """, [(
-            tools.create_RoadLink(rec[mapping['roadid']], rec[mapping['roadcomnum']]), # RoadLinkID
-            rec[mapping['roadname']][:20],                                             # RoadName
-            rec[mapping['roadtype']][:5],                                              # RoadClass
-            rec[mapping['roadcode']][:10],                                             # RoadCode
-            rec[mapping['fnode']][:20],                                                # StartRoadID
-            rec[mapping['tnode']][:20],                                                # EndRoadID
-            rec[mapping['roadstruct']],                                                # StructureType
-            rec[mapping['bridgeid']][:20],                                             # BridgeID
-            rec[mapping['tunnelid']][:20],                                             # TunnelID
-            rec[mapping['width']],                                                     # Width
-            rec[mapping['rdaliasn']][:20] if 'rdaliasn' in mapping else '',            # AliasName
-            'B',                                                                       # Address_County
-            md.strftime('%Y-%m-%d %H:%M:%S'),                                          # ModifiedDate
-            rec[mapping['dir']],                                                       # TrafficDirection
-            g,                                                                         # Geometry
-            ud.strftime('%Y-%m-%d %H:%M:%S'),                                          # UpdateTime
+            rec[mapping['roadid']],                                         # RoadLinkID
+            rec[mapping['roadname']][:20],                                  # RoadName
+            rec[mapping['roadtype']][:5],                                   # RoadClass
+            rec[mapping['roadcode']][:10],                                  # RoadCode
+            rec[mapping['fnode']][:20],                                     # StartRoadID
+            rec[mapping['tnode']][:20],                                     # EndRoadID
+            rec[mapping['roadstruct']],                                     # StructureType
+            rec[mapping['bridgeid']][:20],                                  # BridgeID
+            rec[mapping['tunnelid']][:20],                                  # TunnelID
+            rec[mapping['width']],                                          # Width
+            rec[mapping['rdaliasn']][:20] if 'rdaliasn' in mapping else '', # AliasName
+            'B',                                                            # Address_County
+            md.strftime('%Y-%m-%d %H:%M:%S'),                               # ModifiedDate
+            rec[mapping['dir']],                                            # TrafficDirection
+            g,                                                              # Geometry
+            ud.strftime('%Y-%m-%d %H:%M:%S'),                               # UpdateTime
             )])
         conn.commit()
         i = i + 1
