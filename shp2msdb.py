@@ -12,7 +12,7 @@ from tqdm import tqdm
 import pymssql
 import shapefile
 
-CREATE_TABLE = """
+CREATE_TABLE_ROAD = """
 CREATE TABLE [dbo].[tblRoad](
         [PID] [int] IDENTITY(1,1) NOT NULL,
         [RoadID] [varchar](30) NOT NULL,
@@ -28,7 +28,9 @@ CREATE TABLE [dbo].[tblRoad](
         [PID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
+"""
 
+CREATE_TABLE_ROADLINK = """
 CREATE TABLE [dbo].[tbRoadLink](
         [PID] [int] IDENTITY(1,1) NOT NULL,
         [RoadLinkID] [varchar](20) NOT NULL,
@@ -166,7 +168,7 @@ def main():
     checkTable(conn, "tbRoadLink")
 
     sys.stdout.write("Create table\n")
-    cursor.execute(CREATE_TABLE)
+    cursor.execute(CREATE_TABLE_ROADLINK)
 
     # sys.stdout.write("Start insert Road\n")
     # insertRoad(conn, sf, m)
