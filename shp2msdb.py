@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 __author__ = 'Superbil'
-__version__ = '0.2.2'
+__version__ = '0.2.3'
 
 from motc import tools
 import argparse
