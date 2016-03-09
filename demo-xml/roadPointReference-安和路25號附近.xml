@@ -5,20 +5,40 @@
     xmlns:ro="http://gis-t.motc.gov.tw/standards/schema/RoadNetwork"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://gis-t.motc.gov.tw/standards/schema/RoadNetwork ../XSD/motcRoadNetwork.xsd">    
-    <direction>
+    <!--往北向-->
+    <direction>       
         <gml:CompassPoint>N</gml:CompassPoint>
     </direction>
+    <!--地址表示方式-->
     <atAddress>
         <county>臺中市</county>
         <town>西屯區</town>
         <roadname>安和路</roadname>        
         <doorNumber>25號</doorNumber>
     </atAddress>
+    <!--里程椿表示方式-->
+    <atMileage>
+        <postTag>009K+040</postTag>
+        <alongRoute roadID="road001" />
+    </atMileage>
+    <!--坐標表示方式-->
     <atPoint>
         <gml:Point gml:id="ID000">
             <gml:pos>211974 2675432</gml:pos>
         </gml:Point>
     </atPoint>
     <nearRoadNode roadNodeID="S6EX9LKJ1"></nearRoadNode>
-    <onRoadLink roadLinkID="B-4U-050526"/>
+    <!--交叉路口表示方式-->
+    <onRoadLink roadLinkID="B-4U-050526">
+        <ro:affiliatedRoads>
+            <ro:Road roadID="#">
+                <roadName>西屯路三段</roadName>
+            </ro:Road>
+            <ro:Road roadID="#">
+                <roadName>安和路</roadName>
+            </ro:Road>
+        </ro:affiliatedRoads>
+    </onRoadLink>  
+    <!--非交叉路口，需明確表達位在哪一個線段時，請使用下列表示方式-->
+    <!--<onRoadLink roadLinkID="B-4U-050526"/>-->
 </ro:RoadPointReference>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Roads xmlns:gml="http://www.opengis.net/gml/3.2"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:gmd="http://www.isotc211.org/2005/gmd"
+ xmlns:gco="http://www.isotc211.org/2005/gco"
+ xmlns:gsr="http://www.isotc211.org/2005/gsr"
+ xmlns:gts="http://www.isotc211.org/2005/gts"
+ xmlns:gss="http://www.isotc211.org/2005/gss"
+ xmlns:net="http://gis-t.motc.gov.tw/standards/schema/TransportNetwork"
+ xmlns:ro="http://gis-t.motc.gov.tw/standards/schema/RoadNetwork"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://gis-t.motc.gov.tw/standards/schema/RoadNetwork ../XSD/motcRoadNetworkElemts.xsd" 
+ > 
+<ro:Road roadID="roadID01" />    
+<ro:Road roadID="roadID02">
+    <net:links>
+        <ro:RoadLink roadLinkID="roadlink001" />        
+        <ro:RoadLink roadLinkID="roadlink002">                
+            <geometry>
+                <gml:LineString gml:id="ID000" srsName="urn:ogc:def:crs:EPSG::3826">
+                    <gml:posList>212011 2675517 211945 2675393</gml:posList>
+                </gml:LineString>
+            </geometry>                
+            <modifiedDate>201601</modifiedDate>
+            <trafficDirection>oneway</trafficDirection>
+            <startNode>
+                <geometry>
+                    <gml:Point gml:id="ID003"  srsName="urn:ogc:def:crs:EPSG::3826">
+                        <gml:pos>212011 2675517</gml:pos>
+                    </gml:Point>
+                </geometry>
+                <modifiedDate>201601</modifiedDate>
+            </startNode>
+            <endNode>
+                <geometry>
+                    <gml:Point gml:id="ID006" srsName="urn:ogc:def:crs:EPSG::3826">
+                        <gml:pos>212011 2675517</gml:pos>
+                    </gml:Point>
+                </geometry>
+                <modifiedDate>201601</modifiedDate>
+            </endNode>
+            <width>20</width>
+            <ro:affiliatedRoads>            
+                <ro:Road roadID="road002">
+                    
+                </ro:Road>
+                <ro:Road roadID="road003">
+                    <roadClass>2W</roadClass>
+                    <roadCode>125</roadCode>
+                    <roadName>縣125</roadName>                        
+                </ro:Road>
+                <ro:Road roadID="road004">
+                    <roadClass>RD</roadClass>
+                    <roadCode>6</roadCode>
+                    <roadName>市6</roadName> 
+                </ro:Road>                    
+            </ro:affiliatedRoads>
+        </ro:RoadLink>
+    </net:links>
+    <roadClass>RD</roadClass>
+    <roadCode></roadCode>
+    <roadName>西屯路三段</roadName>
+</ro:Road>
+</Roads>

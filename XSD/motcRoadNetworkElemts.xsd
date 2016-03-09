@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema targetNamespace="http://gis-t.motc.gov.tw/standards/schema/RoadNetwork" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ro="http://gis-t.motc.gov.tw/standards/schema/RoadNetwork" xmlns:net="http://gis-t.motc.gov.tw/standards/schema/TransportNetwork">
+<xs:schema targetNamespace="http://gis-t.motc.gov.tw/standards/schema/RoadNetwork" 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	xmlns:ro="http://gis-t.motc.gov.tw/standards/schema/RoadNetwork" 
+	xmlns:net="http://gis-t.motc.gov.tw/standards/schema/TransportNetwork">
 	<xs:import namespace="http://gis-t.motc.gov.tw/standards/schema/TransportNetwork" schemaLocation="motcTransportNetwork.xsd"/>
 	<xs:element name="Road" type="ro:Road"/>
 	<xs:complexType name="Road">
