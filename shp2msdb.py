@@ -8,6 +8,7 @@ from motc import tools
 import argparse
 import datetime
 import sys
+import time
 from tqdm import tqdm
 import pymssql
 import shapefile
@@ -81,7 +82,9 @@ def insertRoadLink(conn, sf, mapping):
     i = 0
     shapes = sf.shapes()
     for rec in tqdm(sf.iterRecords(), total=len(sf.records())):
-        md = datetime.datetime.fromtimestamp(int(rec[mapping['updatedate']]))
+        # updatedate will like 110829, must change to datetime
+        mdStr = "20{}".format(rec[mapping['updatedate']])
+        md = datetime.datetime.fromtimestamp(time.mktime(time.strptime(mdStr, "%Y%m%d")))
         ud = datetime.datetime.now()
         g = "LineString({} {}, {} {})".format(
             shapes[i].points[0][0],
