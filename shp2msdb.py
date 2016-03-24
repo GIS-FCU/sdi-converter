@@ -86,12 +86,10 @@ def insertRoadLink(conn, sf, mapping):
         mdStr = "20{}".format(rec[mapping['updatedate']])
         md = datetime.datetime.fromtimestamp(time.mktime(time.strptime(mdStr, "%Y%m%d")))
         ud = datetime.datetime.now()
-        g = "LineString({} {}, {} {})".format(
-            shapes[i].points[0][0],
-            shapes[i].points[0][1],
-            shapes[i].points[1][0],
-            shapes[i].points[1][1]
-        )
+        l = []
+        for p in shapes[i].points:
+            l.append("{} {}".format(p[0], p[1]))
+        g = "LineString({})".format(', '.join(l))
         cursor.executemany("""
         INSERT INTO tbRoadLink (
         RoadLinkID,
