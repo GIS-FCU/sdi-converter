@@ -26,29 +26,14 @@
 							<xs:documentation>道路線型參照之起始地址，僅適用於有門牌之市區道路。</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element name="fromMileage" type="ro:RoadMarkerPost" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>道路線型參照之起始里程數，僅適用於有里程標之道路。</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="fromPoint" type="gml:PointPropertyType" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>道路線型參照之起始點，適用於起始點有坐標之情況。</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="fromRoadNode" type="ro:RoadNode" minOccurs="0" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>道路線型參照之起始路段節點，適用於已知路段節點資訊之情況。</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="onRoadLink" type="ro:RoadLink" minOccurs="1" maxOccurs="1">
-						<xs:annotation>
-							<xs:documentation>點參照之參考路段。</xs:documentation>
-						</xs:annotation>
-					</xs:element>
 					<xs:element name="toAddress" type="net:Address" minOccurs="0" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>道路線型參照之終止地址，僅適用於有門牌之市區道路。</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="fromMileage" type="ro:RoadMarkerPost" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>道路線型參照之起始里程數，僅適用於有里程標之道路。</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="toMileage" type="ro:RoadMarkerPost" minOccurs="0" maxOccurs="1">
@@ -56,14 +41,29 @@
 							<xs:documentation>道路線型參照之終止里程數，僅適用於有里程標之道路。</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="fromPoint" type="gml:PointPropertyType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>道路線型參照之起始點，適用於起始點有坐標之情況。</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element name="toPoint" type="gml:PointPropertyType" minOccurs="0" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>道路線型參照之終止點，適用於終止點有坐標之情況。</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="fromRoadNode" type="ro:RoadNode" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>道路線型參照之起始路段節點，適用於已知路段節點資訊之情況。</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element name="toRoadNode" type="ro:RoadNode" minOccurs="0" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>道路線型參照之終止路段節點，適用於已知路段節點資訊之情況。</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="onRoadLink" type="ro:RoadLink" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>點參照之參考路段。</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 				</xs:sequence>
@@ -81,7 +81,7 @@
 					<xs:documentation>里程數。</xs:documentation>
 				</xs:annotation>
 			</xs:element>-->
-			<xs:element name="postTag" type="ro:PostTagType" minOccurs="1" maxOccurs="1">
+			<xs:element name="markerPost" type="ro:PostTagType" minOccurs="1" maxOccurs="1">
 				
 				<xs:annotation>
 					<xs:documentation>道路里程標識名稱，如：16K+500，通常可對應里程數(mileage)。</xs:documentation>

@@ -18,8 +18,8 @@
     </atAddress>
     <!--里程椿表示方式-->
     <atMileage>
-        <postTag>009K+040</postTag>
-        <alongRoute roadID="road001" />
+        <markerPost>009K+040</markerPost>
+        <alongRoute roadID="6-00489" />
     </atMileage>
     <!--坐標表示方式-->
     <atPoint>

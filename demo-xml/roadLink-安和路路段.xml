@@ -13,7 +13,7 @@
     </geometry>
     <modifiedDate>201601</modifiedDate> 
     <!--通行方向 -->
-    <trafficDirection>oneway</trafficDirection>
+    <trafficDirection>twoway</trafficDirection>
     <!-- 線段起始點 -->    
     <startNode nodeID="S6EX9LKJ1" />
     <!-- 線段結束點 -->
@@ -25,13 +25,12 @@
     <!--所屬道路 -->
     <ro:affiliatedRoads>
         <ro:Road roadID="4-01250">
-            <roadClass>4</roadClass>
+            <roadClass>2W</roadClass>
             <roadCode>125</roadCode>
             <roadName>縣125</roadName>
         </ro:Road>
         <ro:Road roadID="6-00489">
-            <roadClass>6</roadClass>
-            <roadCode/>
+            <roadClass>RD</roadClass>
             <roadName>安和路</roadName>
         </ro:Road>
     </ro:affiliatedRoads>           

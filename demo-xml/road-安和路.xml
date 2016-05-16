@@ -14,9 +14,9 @@
         <ro:RoadLink roadLinkID="B-6-325213" />
     </net:links>
     <!--道路等級-->
-    <roadClass>6</roadClass>
-    <!--公路編碼-->
-    <roadCode/>
+    <roadClass>RD</roadClass>
+    <!--編碼-->
+    <roadCode>6</roadCode>    
     <!--道路名稱-->
     <roadName>安和路</roadName>
 </ro:Road>

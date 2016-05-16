@@ -10,42 +10,21 @@
     xmlns:ro="http://gis-t.motc.gov.tw/standards/schema/RoadNetwork"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"    
     xsi:schemaLocation="http://gis-t.motc.gov.tw/standards/schema/RoadNetwork ../XSD/motcRoadNetworkElemts.xsd" 
-    roadID="road001"> 
+    roadID="6-00489">
+        <!-- 市區道路6-00489有以下線段組成-->
         <net:links>
-            <ro:RoadLink roadLinkID="roadlink001" />        
-            <ro:RoadLink roadLinkID="roadlink002">                
-                <geometry>
-                    <gml:LineString gml:id="ID000" srsName="urn:ogc:def:crs:EPSG::3826">
-                        <gml:posList>212011 2675517 211945 2675393</gml:posList>
-                    </gml:LineString>
-                </geometry>                
-                <modifiedDate>201601</modifiedDate>
-                <trafficDirection>oneway</trafficDirection>
-                <startNode>
-                    <geometry>
-                        <gml:Point gml:id="ID003"  srsName="urn:ogc:def:crs:EPSG::3826">
-                            <gml:pos>212011 2675517</gml:pos>
-                        </gml:Point>
-                    </geometry>
-                    <modifiedDate>201601</modifiedDate>
-                </startNode>
-                <endNode>
-                    <geometry>
-                        <gml:Point gml:id="ID006" srsName="urn:ogc:def:crs:EPSG::3826">
-                            <gml:pos>212011 2675517</gml:pos>
-                        </gml:Point>
-                    </geometry>
-                    <modifiedDate>201601</modifiedDate>
-                </endNode>
-                <width>20</width>
-                <ro:affiliatedRoads>            
-                    <ro:Road roadID="road002"/>
-                    <ro:Road roadID="road003">
+            <ro:RoadLink roadLinkID="roadlink001" />
+            <!-- 其中以下線段有共線 -->
+            <ro:RoadLink roadLinkID="roadlink002">
+                <ro:affiliatedRoads>
+                    <!--此線段屬縣道-->
+                    <ro:Road roadID="4-01250">
                         <roadClass>2W</roadClass>
                         <roadCode>125</roadCode>
                         <roadName>縣125</roadName>                        
                     </ro:Road>
-                    <ro:Road roadID="road004">
+                    <!--同時與市區道路共線-->
+                    <ro:Road roadID="6-00489">
                         <roadClass>RD</roadClass>
                         <roadCode>6</roadCode>
                         <roadName>市6</roadName> 

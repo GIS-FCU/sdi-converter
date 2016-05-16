@@ -5,33 +5,41 @@
     xmlns:ro="http://gis-t.motc.gov.tw/standards/schema/RoadNetwork"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://gis-t.motc.gov.tw/standards/schema/RoadNetwork ../xsd/motcRoadNetworkRef.xsd">
+    <!--往北向-->
     <direction>
         <gml:CompassPoint>N</gml:CompassPoint>
     </direction>
+    <!-- 起點，以地址為表示方式 -->
     <fromAddress>
         <county>臺中市</county>
         <town>西屯區</town>
         <roadname>安和路</roadname>
         <doorNumber>25號</doorNumber>
     </fromAddress>
-    <fromPoint>
-        <gml:Point gml:id="ID000">
-            <gml:coordinates>211974 2675432</gml:coordinates>
-        </gml:Point>
-    </fromPoint>
-    <fromRoadNode roadNodeID="S6EX9LKJ1"/>    
-    <onRoadLink roadLinkID="B-4U-050526"/>
+    <!-- 終點，以地址為表示方式 -->
     <toAddress>
         <county>臺中市</county>
         <town>西屯區</town>
         <roadname>安和路</roadname>
         <doorNumber>47號</doorNumber>
     </toAddress>
+    <!-- 起點，以坐標為表示方式 -->
+    <fromPoint>
+        <gml:Point gml:id="ID000" srsName="urn:ogc:def:crs:EPSG::3826">
+            <gml:coordinates>211974 2675432</gml:coordinates>
+        </gml:Point>
+    </fromPoint>
+    <!-- 終點，以坐標為表示方式 -->
     <toPoint>
-        <gml:Point gml:id="ID013">
+        <gml:Point gml:id="ID013" srsName="urn:ogc:def:crs:EPSG::3826">
             <gml:pos>211989 2675474</gml:pos>
         </gml:Point>
     </toPoint>
+    <!-- 起點，以節點ID為表示方式 -->
+    <fromRoadNode roadNodeID="S6EX9LKJ1"/>
+    <!-- 終點，以節點ID為表示方式 -->
     <toRoadNode roadNodeID="S6F1ALKMV"/>
+    <!-- 線形參照所參考的路段基準 -->    
+    <onRoadLink roadLinkID="B-4U-050526"/>
 </ro:RoadLinearReference>
 

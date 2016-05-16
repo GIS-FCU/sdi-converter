@@ -9,7 +9,7 @@
 		<xs:complexContent>
 			<xs:extension base="net:LinkSet">
 				<xs:sequence>
-					<xs:element name="roadClass" type="xs:string" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="roadClass" type="net:RoadClassValue" minOccurs="0" maxOccurs="1"/>
 					<xs:element name="roadCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
 					<xs:element name="roadName" type="xs:string" minOccurs="0" maxOccurs="1"/>
 				</xs:sequence>

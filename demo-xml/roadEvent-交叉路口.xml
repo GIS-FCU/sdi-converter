@@ -9,12 +9,16 @@
  http://gis-t.motc.gov.tw/standards/schema/RoadNetwork ../XSD/motcRoadNetworkRef.xsd"
   eventID="201601260002">
   <locationRef>
-    <ro:RoadPointReference>      
+    <ro:RoadPointReference> 
+      <!--該交叉路口位於哪一個road link-->
       <onRoadLink roadLinkID="B-4U-050526">
+        <!--提供路口節點與哪些道路相交-->
         <ro:affiliatedRoads>
+          <!--交叉路段1-->
           <ro:Road roadID="#">
             <roadName>西屯路三段</roadName>
           </ro:Road>
+          <!--交叉路段2-->
           <ro:Road roadID="#">
             <roadName>安和路</roadName>
           </ro:Road>
@@ -22,16 +26,28 @@
       </onRoadLink>    
     </ro:RoadPointReference>
   </locationRef>
+  <!--路況事件開始的時間-->
   <eventStart>2016-01-26T10:45:00</eventStart>
-  <updateTime>2016-01-26T15:45:00</updateTime>
+  <!--路況事件狀態更新時間-->
+  <updateTime>2016-01-26T10:45:00</updateTime>
+  <!--事件描述-->
   <description>event for demo</description>
+  <!--阻斷車道數-->
   <blockedLane>all</blockedLane>
+  <!--事件所發生之行政區-->
   <district>A</district>
+  <!--事件之類別，包含主類別及次類別-->
   <eventType>accident:crash</eventType>
+  <!-- 事件所造成之影響嚴重程度 -->
   <impact>fullyBlocked</impact>
+  <!--事件是否為周期性活動，或單純為即時事件-->
   <period>periodical</period>
+  <!-- 所造成之回堵狀況 -->
   <range>lessThan10KM</range>
+  <!-- 通報該筆路況的消息來源者 -->
   <source>cpa</source>
+  <!-- 通報該筆路況的單位代碼 -->
   <sourceAuthority>TCHC</sourceAuthority>
-  <status>duplicate</status>
+  <!-- 事件狀態 -->
+  <status>duplicate</status>   
 </roevt:RoadEvent>

@@ -5,10 +5,10 @@
     xmlns:net="http://gis-t.motc.gov.tw/standards/schema/TransportNetwork"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://gis-t.motc.gov.tw/standards/schema/RoadNetwork ../XSD/motcRoadNetwork.xsd">
-    <postTag>009K+500</postTag>
+    <markerPost>009K+500</markerPost>
     <alongRoute roadID="4-01520">
-        <roadClass>4</roadClass>
-        <roadCode>1250</roadCode>
+        <roadClass>2W</roadClass>
+        <roadCode>125</roadCode>
         <roadName>縣125</roadName>
     </alongRoute>
 </ro:RoadMarkerPost>

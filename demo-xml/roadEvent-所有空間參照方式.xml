@@ -15,6 +15,21 @@
  eventID="201601260004">   
    <locationRef>
       <ro:RoadPointReference>
+         <atAddress>
+            <county>台中市</county>
+            <district>西屯區</district>
+            <roadname>西屯路三段</roadname> 
+            <doorNumber>129</doorNumber>
+         </atAddress>         
+         <atMileage>
+            <markerPost>009K+500</markerPost>
+            <alongRoute roadID="4-01250" />
+         </atMileage>
+         <atPoint>
+            <gml:Point gml:id="point1" srsName="urn:ogc:def:crs:EPSG::3826">            
+               <gml:pos>212011 2675517</gml:pos>
+            </gml:Point>
+         </atPoint>
          <atRoadNode roadNodeID="">
             <geometry>
                <gml:Point gml:id="ID003"  srsName="urn:ogc:def:crs:EPSG::3826">
@@ -22,7 +37,7 @@
                </gml:Point>
             </geometry>
             <modifiedDate>201601</modifiedDate>
-         </atRoadNode>
+         </atRoadNode>         
          <onRoadLink roadLinkID="">
             <geometry>
                <gml:LineString gml:id="ID000" srsName="urn:ogc:def:crs:EPSG::3826">
@@ -33,7 +48,7 @@
             <trafficDirection>oneway</trafficDirection>
             <startNode>
                <geometry>
-                  <gml:Point gml:id="ID003"  srsName="urn:ogc:def:crs:EPSG::3826">
+                  <gml:Point gml:id="ID004"  srsName="urn:ogc:def:crs:EPSG::3826">
                      <gml:pos>212011 2675517</gml:pos>
                   </gml:Point>
                </geometry>
@@ -48,37 +63,19 @@
                <modifiedDate>201601</modifiedDate>
             </endNode>
             <width>20</width>
-            <ro:affiliatedRoads>            
-               <ro:Road roadID="road002"/>
-               <ro:Road roadID="road003">
+            <ro:affiliatedRoads>     
+               <ro:Road roadID="4-01250">
                   <roadClass>2W</roadClass>
                   <roadCode>125</roadCode>
                   <roadName>縣125</roadName>                        
                </ro:Road>
-               <ro:Road roadID="road004">
+               <ro:Road roadID="6-00489">
                   <roadClass>RD</roadClass>
                   <roadCode>6</roadCode>
                   <roadName>市6</roadName> 
                </ro:Road>                    
             </ro:affiliatedRoads>
-         </onRoadLink>
-         <atPoint>
-            <gml:Point gml:id="point1" srsName="urn:ogc:def:crs:EPSG::3826">            
-               <gml:pos>212011 2675517</gml:pos>
-            </gml:Point>
-         </atPoint>
-         <atAddress>
-            <county>台中市</county>
-            <district>西屯區</district>
-            <doorNumber>129</doorNumber>          
-            <roadname>西屯路三段</roadname>          
-         </atAddress>
-         <atMileage>
-            <mileage>9500</mileage>
-            <postTag>009K+500</postTag>
-            <alongRoute roadID="road001" />
-         </atMileage>
-         
+         </onRoadLink>         
       </ro:RoadPointReference>
    </locationRef>
    <eventStart>2016-01-26T10:45:00</eventStart>
@@ -91,7 +88,6 @@
     <period>periodical</period>
     <range>lessThan10KM</range>
     <source>cpa</source>
-    <sourceAuthority>A</sourceAuthority>
+    <sourceAuthority>CGH</sourceAuthority>
     <status>duplicate</status>    
-  
 </roevt:RoadEvent>
